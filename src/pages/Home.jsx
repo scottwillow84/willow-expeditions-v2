@@ -20,7 +20,7 @@ export default function Home() {
       <section className="homeHero">
         <div className="heroShade">
           <p className="eyebrow">Expedition 001</p>
-          <h1>Williamson Expeditions</h1>
+          <h1>Willow Expeditions</h1>
           <h2>Tasmania 2026</h2>
           <p className="heroText">
             Adventure where it&apos;s worth it. Comfort where it matters.

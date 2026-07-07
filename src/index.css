@@ -215,4 +215,18 @@ font-style:italic;
   .homeHero{
     min-height:58vh;
   }
+}.topNav{
+  background:#1a2233;
+  padding:18px;
+  border-bottom:1px solid #2a3446;
+  position:sticky;
+  top:0;
+  z-index:1000;
+}
+
+.topNav nav{
+  display:flex;
+  justify-content:center;
+  gap:16px;
+  flex-wrap:wrap;
 }
