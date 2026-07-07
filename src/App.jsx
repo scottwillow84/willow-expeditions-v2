@@ -10,7 +10,7 @@ import Accommodation from "./pages/Accommodation";
 
 export default function App() {
   return (
-    <BrowserRouter>
+    <BrowserRouter basename="/willow-expeditions-v2">
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/timeline" element={<Itinerary />} />
