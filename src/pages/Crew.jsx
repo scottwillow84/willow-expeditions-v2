@@ -3,24 +3,26 @@ import Layout from "../components/Layout";
 const crew = [
   {
     name: "Scott",
-    role: "Expedition Leader / Driver",
-    mission: "Find the best roads, 4WD tracks, coffee, snow and hidden lookouts.",
+    role: "Co-Leader / Co-Driver",
+    mission: "Route planning, 4WD fun, photography, snow chances and good pubs.",
     wishlist: [
       "4WD fun, not just gravel roads",
       "Snow",
-      "Platypus",
       "Lighthouses",
       "Photography spots",
-      "Starlink / remote comms",
+      "Good pubs",
     ],
   },
   {
     name: "Sarah",
-    role: "Food, comfort & good ideas",
-    mission: "Keep the trip enjoyable, relaxed and well-fed.",
+    role: "Co-Leader / Co-Driver",
+    mission: "Food, wildlife, comfort, relaxed days and keeping the trip enjoyable.",
     wishlist: [
+      "Platypus",
+      "Wildlife",
       "Seafood",
       "Breweries and cider",
+      "Good pubs",
       "Nice accommodation",
       "Markets",
       "Port Arthur",
@@ -56,7 +58,6 @@ const crew = [
     role: "Junior Explorer",
     mission: "Find animals, beaches, rock pools and adventure.",
     wishlist: [
-      "Platypus",
       "Penguins",
       "Wombats",
       "Snow",
@@ -70,8 +71,8 @@ export default function Crew() {
   return (
     <Layout title="Meet the Crew">
       <p className="intro">
-        Everyone gets input. Add ideas, must-dos, things to skip and wildcard
-        activities before we lock bookings in.
+        Everyone gets input. Add ideas, must-dos, things to skip and realistic
+        options before we lock bookings in.
       </p>
 
       <div className="grid">
@@ -80,7 +81,7 @@ export default function Crew() {
             <h3>{person.name}</h3>
             <p className="muted">{person.role}</p>
 
-            <h4>Mission</h4>
+            <h4>Looking Forward To</h4>
             <p>{person.mission}</p>
 
             <h4>Wishlist</h4>
