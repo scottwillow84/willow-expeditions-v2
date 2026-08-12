@@ -8,7 +8,7 @@ const days = [
     stay: "Geelong",
     notes: [
       "Scott & Jane depart Sydney",
-      "Easy drive to Geelong",
+      "Easy drive south",
       "Dinner and overnight",
     ],
   },
@@ -26,61 +26,77 @@ const days = [
   {
     day: 3,
     date: "Sun 27 Sep",
-    title: "Devonport → Launceston",
-    stay: "Launceston",
+    title: "Devonport → Hadspen",
+    stay: "Discovery Parks Hadspen",
     notes: [
       "Arrive Devonport",
-      "Explore Launceston",
-      "Early night",
+      "Drive to Hadspen",
+      "Check in for two nights (Booked)",
+      "Scott & Jane only",
     ],
   },
   {
     day: 4,
     date: "Mon 28 Sep",
-    title: "Launceston",
-    stay: "Launceston",
+    title: "Hadspen / Launceston",
+    stay: "Discovery Parks Hadspen",
     notes: [
-      "Collect Sarah, Mia & Simone (3:20 pm)",
-      "Stock up on supplies",
-      "Dinner together",
+      "Easy morning with Scott & Jane",
+      "Collect Sarah, Mia & Simone from Launceston Airport at 3:20 pm",
+      "First family dinner together",
     ],
   },
   {
     day: 5,
     date: "Tue 29 Sep",
-    title: "Launceston → Bay of Fires",
-    stay: "St Helens",
+    title: "Hadspen → Lulworth",
+    stay: "Lulworth",
     notes: [
-      "Bay of Fires",
-      "Binalong Bay",
-      "Sunset photography",
+      "Check out of Hadspen",
+      "Drive north-east to Lulworth",
+      "Check in for two nights (Booked)",
+      "Beach / relaxed family afternoon",
     ],
   },
   {
     day: 6,
     date: "Wed 30 Sep",
-    title: "East Coast",
-    stay: "St Helens",
+    title: "Lulworth",
+    stay: "Lulworth",
     notes: [
-      "The Gardens",
-      "Beer / Pub",
-      "Beach afternoon",
+      "Full family day",
+      "Beach and local exploring",
+      "Good pub option",
+      "Keep the day relaxed",
     ],
   },
   {
     day: 7,
     date: "Thu 1 Oct",
-    title: "St Helens → Bicheno",
-    stay: "Bicheno",
+    title: "Lulworth → St Helens",
+    stay: "St Helens",
     notes: [
-      "Easy coastal drive",
-      "Blowhole",
-      "Little Penguin Tour",
+      "Check out of Lulworth",
+      "Working route via Gladstone / north-east back roads",
+      "Optional harder 4WD sections if conditions suit",
+      "Arrive St Helens",
     ],
   },
   {
     day: 8,
     date: "Fri 2 Oct",
+    title: "St Helens → Bicheno",
+    stay: "Bicheno",
+    notes: [
+      "Bay of Fires / Binalong Bay options",
+      "Easy coastal drive south",
+      "Bicheno Blowhole",
+      "Little Penguin Tour option",
+    ],
+  },
+  {
+    day: 9,
+    date: "Sat 3 Oct",
     title: "Bicheno → Freycinet",
     stay: "Coles Bay",
     notes: [
@@ -90,30 +106,30 @@ const days = [
     ],
   },
   {
-    day: 9,
-    date: "Sat 3 Oct",
+    day: 10,
+    date: "Sun 4 Oct",
     title: "Freycinet",
     stay: "Coles Bay",
     notes: [
-      "Relax day",
+      "Relaxed Freycinet day",
       "Walks",
       "Photography",
     ],
   },
   {
-    day: 10,
-    date: "Sun 4 Oct",
+    day: 11,
+    date: "Mon 5 Oct",
     title: "Freycinet → Carlton River",
     stay: "Carlton River",
     notes: [
+      "Drive south",
       "Move into family accommodation",
-      "BBQ",
-      "Relax",
+      "BBQ and relax",
     ],
   },
   {
-    day: 11,
-    date: "Mon 5 Oct",
+    day: 12,
+    date: "Tue 6 Oct",
     title: "Carlton River",
     stay: "Carlton River",
     notes: [
@@ -123,52 +139,53 @@ const days = [
     ],
   },
   {
-    day: 12,
-    date: "Tue 6 Oct",
+    day: 13,
+    date: "Wed 7 Oct",
     title: "Port Arthur",
     stay: "Carlton River",
     notes: [
-      "Historic Site",
+      "Port Arthur Historic Site",
       "Tasman Peninsula",
       "Remarkable Cave",
     ],
   },
   {
-    day: 13,
-    date: "Wed 7 Oct",
+    day: 14,
+    date: "Thu 8 Oct",
     title: "Hobart",
     stay: "Carlton River",
     notes: [
-      "Salamanca",
-      "Mount Wellington",
+      "Hobart day trip",
+      "Salamanca area",
+      "kunanyi / Mount Wellington if weather suits",
       "Dinner",
-    ],
-  },
-  {
-    day: 14,
-    date: "Thu 8 Oct",
-    title: "Carlton River",
-    stay: "Carlton River",
-    notes: [
-      "Free day",
-      "Markets / shopping",
-      "Family dinner",
     ],
   },
   {
     day: 15,
     date: "Fri 9 Oct",
-    title: "Carlton River → Strahan",
-    stay: "Strahan",
+    title: "Carlton River",
+    stay: "Carlton River",
     notes: [
-      "West Coast drive",
-      "Lookouts",
-      "Pub",
+      "Free / flexible day",
+      "Family time",
+      "Final night at the base",
     ],
   },
   {
     day: 16,
     date: "Sat 10 Oct",
+    title: "Carlton River → Strahan",
+    stay: "Strahan",
+    notes: [
+      "West Coast drive",
+      "Lookouts and stops along the way",
+      "Good pub in the evening",
+    ],
+  },
+  {
+    day: 17,
+    date: "Sun 11 Oct",
     title: "Strahan",
     stay: "Strahan",
     notes: [
@@ -177,8 +194,8 @@ const days = [
     ],
   },
   {
-    day: 17,
-    date: "Sun 11 Oct",
+    day: 18,
+    date: "Mon 12 Oct",
     title: "Strahan → Cradle Mountain",
     stay: "Cradle Mountain",
     notes: [
@@ -188,30 +205,42 @@ const days = [
     ],
   },
   {
-    day: 18,
-    date: "Mon 12 Oct",
+    day: 19,
+    date: "Tue 13 Oct",
     title: "Cradle Mountain",
     stay: "Cradle Mountain",
     notes: [
       "Dove Lake",
       "Wombats",
       "Photography",
-    ],
-  },
-  {
-    day: 19,
-    date: "Tue 13 Oct",
-    title: "Cradle → Devonport",
-    stay: "Spirit of Tasmania",
-    notes: [
-      "Easy drive",
-      "Board ferry",
+      "Snow chase if conditions cooperate",
     ],
   },
   {
     day: 20,
     date: "Wed 14 Oct",
-    title: "Melbourne → Sydney",
+    title: "Cradle Mountain → North Coast",
+    stay: "Devonport / North Coast TBC",
+    notes: [
+      "Easy final touring day",
+      "Position ourselves for the ferry",
+      "Final Tasmania night",
+    ],
+  },
+  {
+    day: 21,
+    date: "Thu 15 Oct",
+    title: "Return Spirit of Tasmania",
+    stay: "Spirit of Tasmania",
+    notes: [
+      "Return ferry is on 15 October",
+      "Board Spirit of Tasmania",
+    ],
+  },
+  {
+    day: 22,
+    date: "Fri 16 Oct",
+    title: "Geelong → Sydney",
     stay: "Home",
     notes: [
       "Drive home",
@@ -223,9 +252,7 @@ const days = [
 export default function Itinerary() {
   return (
     <Layout title="Master Timeline">
-
       <div className="grid">
-
         {days.map((day) => (
           <div className="card" key={day.day}>
             <h3>
@@ -234,21 +261,16 @@ export default function Itinerary() {
 
             <h2>{day.title}</h2>
 
-            <p className="muted">
-              🛏 {day.stay}
-            </p>
+            <p className="muted">🛏 {day.stay}</p>
 
             <ul>
               {day.notes.map((note) => (
                 <li key={note}>{note}</li>
               ))}
             </ul>
-
           </div>
         ))}
-
       </div>
-
     </Layout>
   );
 }
