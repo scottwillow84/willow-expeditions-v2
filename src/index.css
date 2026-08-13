@@ -1,232 +1,341 @@
-*{
-  margin:0;
-  padding:0;
-  box-sizing:border-box;
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
 }
 
-body{
-  font-family:Segoe UI,Tahoma,Geneva,Verdana,sans-serif;
-  background:#10141b;
-  color:#fff;
+:root {
+  font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  color: #172033;
+  background: #f4f6f8;
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
 }
 
-a{
-  text-decoration:none;
+body {
+  min-width: 320px;
+  background: #f4f6f8;
 }
 
-.hero{
-  background:linear-gradient(180deg,#1a2233,#111823);
-  padding:40px 20px;
-  text-align:center;
-  border-bottom:1px solid #2a3446;
+button,
+input,
+select,
+textarea {
+  font: inherit;
 }
 
-.hero h1{
-  font-size:3rem;
-  margin-bottom:8px;
+button {
+  color: inherit;
 }
 
-.hero p{
-  color:#d5b46d;
-  margin-bottom:25px;
-  font-size:1.2rem;
+.app {
+  min-height: 100vh;
 }
 
-nav{
-  display:flex;
-  justify-content:center;
-  gap:16px;
-  flex-wrap:wrap;
+.simpleHeader {
+  position: sticky;
+  top: 0;
+  z-index: 20;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  padding: 14px 22px;
+  background: rgba(255, 255, 255, 0.96);
+  border-bottom: 1px solid #dfe3e8;
+  backdrop-filter: blur(10px);
 }
 
-nav a{
-  color:white;
-  padding:10px 18px;
-  border-radius:8px;
-  transition:.2s;
-  background:#202a3a;
+.tripLabel {
+  margin-bottom: 2px;
+  color: #6b7280;
+  font-size: 0.82rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
 }
 
-nav a:hover{
-  background:#d5b46d;
-  color:#10141b;
+.simpleHeader h1 {
+  font-size: 1.25rem;
+  line-height: 1.2;
 }
 
-main{
-  max-width:1200px;
-  margin:auto;
-  padding:50px 25px;
+.tripDates {
+  color: #4b5563;
+  font-size: 0.95rem;
+  white-space: nowrap;
 }
 
-main h2{
-  margin-bottom:30px;
-  color:#d5b46d;
+main {
+  width: min(900px, 100%);
+  margin: 0 auto;
+  padding: 24px 18px 48px;
 }
 
-.grid{
-  display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
-  gap:20px;
+.plannerIntro {
+  margin-bottom: 20px;
 }
 
-.card{
-  background:#1b2432;
-  border-radius:14px;
-  padding:25px;
-  transition:.25s;
-  border:1px solid #2b3548;
+.plannerIntro h2 {
+  margin-bottom: 6px;
+  font-size: 1.5rem;
 }
 
-.card:hover{
-  transform:translateY(-6px);
-  border-color:#d5b46d;
+.plannerIntro p,
+.plannerNote {
+  color: #5f6877;
+  line-height: 1.55;
 }
 
-.card h3{
-  color:#d5b46d;
-  margin-bottom:15px;
+.calendarList {
+  display: grid;
+  gap: 12px;
 }
 
-.card p,
-.card li{
-  color:#d8dde6;
-  line-height:1.6;
+.routeCard {
+  margin: 4px 10px 12px;
+  padding: 12px 14px;
+  border-left: 4px solid #8b95a5;
+  background: #e9edf2;
+  border-radius: 10px;
+  color: #384152;
 }
 
-ul{
-  margin-left:20px;
+.routeTop {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  font-weight: 700;
 }
 
-@media(max-width:700px){
-
-.hero h1{
-font-size:2rem;
+.routeNumbers {
+  color: #667085;
+  font-size: 0.9rem;
+  font-weight: 600;
+  white-space: nowrap;
 }
 
-nav{
-gap:10px;
+.routeOptions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px 16px;
+  margin-top: 8px;
+  color: #5f6877;
+  font-size: 0.9rem;
+  line-height: 1.4;
 }
 
-nav a{
-padding:8px 12px;
-font-size:.9rem;
+.stayCard {
+  overflow: hidden;
+  background: #ffffff;
+  border: 1px solid #dfe3e8;
+  border-radius: 14px;
 }
 
-}.card h1{
-
-font-size:4rem;
-
-color:#d5b46d;
-
-margin:15px 0;
-
+.stayCard.open {
+  border-color: #9ca6b5;
 }
 
-.card h2{
-
-margin-bottom:15px;
-
+.stayButton {
+  width: 100%;
+  display: grid;
+  grid-template-columns: 170px 1fr 36px;
+  gap: 16px;
+  align-items: center;
+  padding: 18px;
+  border: 0;
+  background: transparent;
+  text-align: left;
+  cursor: pointer;
 }
 
-.intro{
-
-margin-bottom:25px;
-
-color:#ccc;
-
+.stayButton:hover {
+  background: #fafbfc;
 }
 
-.muted{
-
-color:#d5b46d;
-
-margin-bottom:15px;
-
-font-style:italic;
-
-}.homeHero{
-  min-height:52vh;
-  background:
-    linear-gradient(90deg,rgba(10,14,20,.88),rgba(10,14,20,.35)),
-    url("./assets/hero.jpg") center/cover;
-  display:flex;
-  align-items:center;
-  border-bottom:1px solid #2a3446;
+.dateBlock {
+  display: grid;
+  gap: 4px;
 }
 
-.heroShade{
-  max-width:1200px;
-  width:100%;
-  margin:auto;
-  padding:80px 25px;
+.dateText {
+  font-weight: 800;
 }
 
-.eyebrow{
-  color:#d5b46d;
-  letter-spacing:4px;
-  text-transform:uppercase;
-  font-weight:700;
-  margin-bottom:12px;
+.nightText {
+  color: #7a8493;
+  font-size: 0.9rem;
 }
 
-.homeHero h1{
-  font-size:4.5rem;
-  line-height:1;
-  margin-bottom:12px;
-  max-width:780px;
+.stayMain {
+  min-width: 0;
 }
 
-.homeHero h2{
-  color:#d5b46d;
-  font-size:2rem;
-  margin-bottom:20px;
+.stayHeading {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+  margin-bottom: 5px;
 }
 
-.heroText{
-  font-size:1.35rem;
-  max-width:520px;
-  color:#f1f1f1;
+.stayHeading h3 {
+  font-size: 1.08rem;
 }
 
-.statCard h3{
-  font-size:3rem;
-  margin-bottom:8px;
+.stayMain p {
+  color: #667085;
+  line-height: 1.45;
 }
 
-.progressBar{
-  height:18px;
-  background:#2a3446;
-  border-radius:99px;
-  overflow:hidden;
-  margin:18px 0;
+.status {
+  display: inline-flex;
+  align-items: center;
+  min-height: 24px;
+  padding: 3px 9px;
+  border-radius: 999px;
+  background: #eef1f4;
+  color: #4b5563;
+  font-size: 0.78rem;
+  font-weight: 800;
 }
 
-.progressBar span{
-  display:block;
-  height:100%;
-  background:linear-gradient(90deg,#d5b46d,#f2d68a);
+.status-booked,
+.status-locked-in {
+  background: #e6f4ea;
+  color: #25633a;
 }
 
-@media(max-width:700px){
-  .homeHero h1{
-    font-size:2.7rem;
+.status-planning {
+  background: #fff2d7;
+  color: #795400;
+}
+
+.status-finish {
+  background: #e6eefc;
+  color: #294b82;
+}
+
+.chevron {
+  display: grid;
+  width: 32px;
+  height: 32px;
+  place-items: center;
+  border-radius: 50%;
+  background: #eef1f4;
+  color: #4b5563;
+  font-size: 1.35rem;
+  line-height: 1;
+}
+
+.stayDetails {
+  padding: 0 18px 18px 204px;
+}
+
+.stayDetails h4 {
+  margin-bottom: 10px;
+  font-size: 0.95rem;
+}
+
+.activityList {
+  overflow: hidden;
+  border: 1px solid #e4e7eb;
+  border-radius: 10px;
+}
+
+.activityRow {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 11px 12px;
+  border-bottom: 1px solid #e9ecef;
+}
+
+.activityRow:last-child {
+  border-bottom: 0;
+}
+
+.activityDistance {
+  color: #7a8493;
+  font-size: 0.86rem;
+  white-space: nowrap;
+}
+
+.plannerNote {
+  margin-top: 20px;
+  padding: 14px;
+  background: #eef1f4;
+  border-radius: 10px;
+  font-size: 0.9rem;
+}
+
+@media (max-width: 700px) {
+  .simpleHeader {
+    align-items: flex-start;
+    padding: 12px 14px;
   }
 
-  .homeHero{
-    min-height:58vh;
+  .simpleHeader h1 {
+    font-size: 1.08rem;
   }
-}.topNav{
-  background:#1a2233;
-  padding:18px;
-  border-bottom:1px solid #2a3446;
-  position:sticky;
-  top:0;
-  z-index:1000;
-}
 
-.topNav nav{
-  display:flex;
-  justify-content:center;
-  gap:16px;
-  flex-wrap:wrap;
+  .tripDates {
+    padding-top: 2px;
+    font-size: 0.82rem;
+  }
+
+  main {
+    padding: 18px 12px 40px;
+  }
+
+  .plannerIntro h2 {
+    font-size: 1.3rem;
+  }
+
+  .stayButton {
+    grid-template-columns: 1fr 34px;
+    gap: 10px;
+    padding: 15px;
+  }
+
+  .dateBlock {
+    grid-column: 1;
+    margin-bottom: 3px;
+  }
+
+  .stayMain {
+    grid-column: 1;
+  }
+
+  .chevron {
+    grid-column: 2;
+    grid-row: 1 / span 2;
+    align-self: center;
+  }
+
+  .stayDetails {
+    padding: 0 15px 15px;
+  }
+
+  .routeCard {
+    margin: 2px 4px 10px;
+  }
+
+  .routeTop {
+    display: grid;
+  }
+
+  .routeNumbers {
+    white-space: normal;
+  }
+
+  .routeOptions {
+    display: grid;
+    gap: 5px;
+  }
+
+  .activityRow {
+    align-items: flex-start;
+  }
 }
