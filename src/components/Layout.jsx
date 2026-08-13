@@ -1,24 +1,15 @@
-import { Link } from "react-router-dom";
-
-export default function Layout({ title, children }) {
+export default function Layout({ children }) {
   return (
     <div className="app">
-    <header className="topNav">
-      <nav>
-      <Link to="/">HQ</Link>
-      <Link to="/timeline">Timeline</Link>
-      <Link to="/places">Places</Link>
-      <Link to="/accommodation">Stays</Link>
-      <Link to="/crew">Crew</Link>
-      <Link to="/vehicle">Vehicle</Link>
-      <Link to="/feedback">Ideas</Link>
-  </nav>
-</header>
+      <header className="simpleHeader">
+        <div>
+          <p className="tripLabel">Tasmania 2026</p>
+          <h1>Family Trip Planner</h1>
+        </div>
+        <p className="tripDates">25 Sep – 16 Oct</p>
+      </header>
 
-      <main>
-        <h2>{title}</h2>
-        {children}
-      </main>
+      <main>{children}</main>
     </div>
   );
 }
