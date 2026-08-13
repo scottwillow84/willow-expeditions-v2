@@ -215,11 +215,12 @@ const routes = {
     to: "Lulworth",
     origin: "Discovery Parks Hadspen Tasmania",
     destination: "Lulworth Tasmania Australia",
-    distance: "~72 km",
-    drive: "~1 h 5 min",
-    direct: "Via Launceston / East Tamar",
-    scenic: "Tamar / north coast options",
-    offroad: "Optional",
+    distance: "~70–75 km",
+    drive: "~55–60 min",
+    direct: "Three good route choices",
+    scenic: "Lilydale / Pipers River options",
+    offroad: "Industry Road rural shortcut option",
+    comparePath: "/willow-expeditions-v2/route/hadspen-lulworth",
   },
   sthelens: {
     from: "Lulworth",
@@ -334,14 +335,21 @@ function RouteCard({ route }) {
         <span><strong>Scenic:</strong> {route.scenic}</span>
         <span><strong>4WD:</strong> {route.offroad}</span>
       </div>
-      <a
-        className="routeMapLink"
-        href={directionsUrl(route.origin, route.destination)}
-        target="_blank"
-        rel="noreferrer"
-      >
-        Open route in Google Maps ↗
-      </a>
+
+      {route.comparePath ? (
+        <a className="routeMapLink" href={route.comparePath}>
+          Compare the route options →
+        </a>
+      ) : (
+        <a
+          className="routeMapLink"
+          href={directionsUrl(route.origin, route.destination)}
+          target="_blank"
+          rel="noreferrer"
+        >
+          Open route in Google Maps ↗
+        </a>
+      )}
     </div>
   );
 }
@@ -353,7 +361,7 @@ export default function Home() {
     <Layout>
       <section className="plannerIntro">
         <h2>Where are we sleeping?</h2>
-        <p>Tap any stay for nearby ideas. Tap any map link to open it straight in Google Maps.</p>
+        <p>Tap any stay for nearby ideas. Tap a route to compare ways of getting there.</p>
       </section>
 
       <div className="calendarList">
@@ -430,7 +438,7 @@ export default function Home() {
       </div>
 
       <p className="plannerNote">
-        Drive times are planning estimates. Tap the Google Maps route before travel for the live route and traffic.
+        Drive times are planning estimates. Tap Google Maps before travel for the live route, traffic and road conditions.
       </p>
     </Layout>
   );
