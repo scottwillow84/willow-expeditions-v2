@@ -4,21 +4,10 @@ import Layout from "../components/Layout";
 const mapsUrl = (query) =>
   `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(query)}`;
 
+const directionsUrl = (origin, destination) =>
+  `https://www.google.com/maps/dir/?api=1&origin=${encodeURIComponent(origin)}&destination=${encodeURIComponent(destination)}&travelmode=driving`;
+
 const stays = [
-  {
-    id: "sep25",
-    dates: "Fri 25 Sep",
-    nights: "1 night",
-    place: "Overnight stop – TBC",
-    mapQuery: "Geelong Victoria Australia",
-    status: "Planning",
-    note: "Scott & Jane drive south from Sydney.",
-    things: [
-      { name: "Easy dinner", mapQuery: "restaurants Geelong Victoria" },
-      { name: "Early night" },
-      { name: "Keep the first day simple" },
-    ],
-  },
   {
     id: "sep26",
     dates: "Sat 26 Sep",
@@ -26,11 +15,11 @@ const stays = [
     place: "Spirit of Tasmania",
     mapQuery: "Spirit of Tasmania Geelong Terminal",
     status: "Booked",
-    note: "2-bed porthole cabin for Scott & Jane.",
+    note: "Scott & Jane drive Sydney → Geelong and go straight onto the boat. No hotel stop.",
     things: [
-      { name: "Spirit of Tasmania Geelong Terminal", mapQuery: "Spirit of Tasmania Geelong Terminal" },
-      { name: "Dinner onboard" },
-      { name: "Cabin booked" },
+      { name: "Spirit of Tasmania Geelong Terminal", mapQuery: "Spirit of Tasmania Geelong Terminal", distance: "Destination" },
+      { name: "Dinner onboard", distance: "Onboard" },
+      { name: "2-bed porthole cabin", distance: "Onboard" },
     ],
   },
   {
@@ -42,9 +31,9 @@ const stays = [
     status: "Booked",
     note: "Scott & Jane first night. Family together from Monday afternoon.",
     things: [
-      { name: "Launceston", mapQuery: "Launceston Tasmania" },
-      { name: "Launceston Airport", mapQuery: "Launceston Airport Tasmania" },
-      { name: "Family dinner", mapQuery: "family restaurants Launceston Tasmania" },
+      { name: "Launceston", mapQuery: "Launceston Tasmania", distance: "12 km • ~10 min" },
+      { name: "Launceston Airport", mapQuery: "Launceston Airport Tasmania", distance: "19 km • ~14 min" },
+      { name: "Family dinner", mapQuery: "family restaurants Launceston Tasmania", distance: "~12 km to Launceston" },
     ],
   },
   {
@@ -56,10 +45,10 @@ const stays = [
     status: "Booked",
     note: "Relaxed coast stay for all five of us.",
     things: [
-      { name: "Lulworth Beach", mapQuery: "Lulworth Beach Tasmania" },
-      { name: "Local exploring", mapQuery: "Lulworth Tasmania" },
-      { name: "Good pub", mapQuery: "pubs near Lulworth Tasmania" },
-      { name: "Easy family day" },
+      { name: "Lulworth Beach", mapQuery: "Lulworth Beach Tasmania", distance: "Local" },
+      { name: "Local exploring", mapQuery: "Lulworth Tasmania", distance: "Local" },
+      { name: "Good pub", mapQuery: "pubs near Lulworth Tasmania", distance: "Varies" },
+      { name: "Easy family day", distance: "—" },
     ],
   },
   {
@@ -71,10 +60,10 @@ const stays = [
     status: "Planning",
     note: "Current idea is to make the drive from Lulworth part of the day.",
     things: [
-      { name: "Bay of Fires", mapQuery: "Bay of Fires Tasmania" },
-      { name: "Binalong Bay", mapQuery: "Binalong Bay Tasmania" },
-      { name: "The Gardens", mapQuery: "The Gardens Bay of Fires Tasmania" },
-      { name: "Seafood / pub", mapQuery: "seafood pub St Helens Tasmania" },
+      { name: "Bay of Fires", mapQuery: "Bay of Fires Tasmania", distance: "~11–30 km • 15–30 min" },
+      { name: "Binalong Bay", mapQuery: "Binalong Bay Tasmania", distance: "11 km • ~10–15 min" },
+      { name: "The Gardens", mapQuery: "The Gardens Bay of Fires Tasmania", distance: "~24 km • ~25 min" },
+      { name: "Seafood / pub", mapQuery: "seafood pub St Helens Tasmania", distance: "Local" },
     ],
   },
   {
@@ -86,9 +75,9 @@ const stays = [
     status: "Planning",
     note: "East coast stop before Freycinet.",
     things: [
-      { name: "Bicheno Blowhole", mapQuery: "Bicheno Blowhole Tasmania" },
-      { name: "Little Penguin Tour", mapQuery: "Bicheno Penguin Tours Tasmania" },
-      { name: "Coastal exploring", mapQuery: "Bicheno Tasmania" },
+      { name: "Bicheno Blowhole", mapQuery: "Bicheno Blowhole Tasmania", distance: "Local • few min" },
+      { name: "Little Penguin Tour", mapQuery: "Bicheno Penguin Tours Tasmania", distance: "Local • few min" },
+      { name: "Coastal exploring", mapQuery: "Bicheno Tasmania", distance: "Local" },
     ],
   },
   {
@@ -100,11 +89,11 @@ const stays = [
     status: "Planning",
     note: "Two nights so we are not packing up every morning.",
     things: [
-      { name: "Wineglass Bay", mapQuery: "Wineglass Bay Tasmania" },
-      { name: "Cape Tourville", mapQuery: "Cape Tourville Lighthouse Tasmania" },
-      { name: "Freycinet walks", mapQuery: "Freycinet National Park Tasmania" },
-      { name: "Photography", mapQuery: "Freycinet National Park Tasmania" },
-      { name: "Seafood", mapQuery: "seafood Coles Bay Tasmania" },
+      { name: "Wineglass Bay", mapQuery: "Wineglass Bay car park Tasmania", distance: "~7 km • ~10 min" },
+      { name: "Cape Tourville", mapQuery: "Cape Tourville Lighthouse Tasmania", distance: "~7 km • ~15 min" },
+      { name: "Freycinet walks", mapQuery: "Freycinet National Park Tasmania", distance: "Local" },
+      { name: "Photography", mapQuery: "Freycinet National Park Tasmania", distance: "Local" },
+      { name: "Seafood", mapQuery: "seafood Coles Bay Tasmania", distance: "Local" },
     ],
   },
   {
@@ -116,12 +105,12 @@ const stays = [
     status: "Locked In",
     note: "Family base for the middle of the trip.",
     things: [
-      { name: "Port Arthur Historic Site", mapQuery: "Port Arthur Historic Site Tasmania" },
-      { name: "Tasman Peninsula", mapQuery: "Tasman Peninsula Tasmania" },
-      { name: "Remarkable Cave", mapQuery: "Remarkable Cave Tasmania" },
-      { name: "Hobart", mapQuery: "Hobart Tasmania" },
-      { name: "kunanyi / Mount Wellington", mapQuery: "kunanyi Mount Wellington Tasmania" },
-      { name: "Family / free day" },
+      { name: "Port Arthur Historic Site", mapQuery: "Port Arthur Historic Site Tasmania", distance: "~60 km • ~1 hr" },
+      { name: "Tasman Peninsula", mapQuery: "Tasman Peninsula Tasmania", distance: "~30–60 km" },
+      { name: "Remarkable Cave", mapQuery: "Remarkable Cave Tasmania", distance: "~65 km • ~1 hr" },
+      { name: "Hobart", mapQuery: "Hobart Tasmania", distance: "40 km • ~30–40 min" },
+      { name: "kunanyi / Mount Wellington", mapQuery: "kunanyi Mount Wellington Tasmania", distance: "~60 km • ~1 hr" },
+      { name: "Family / free day", distance: "—" },
     ],
   },
   {
@@ -133,10 +122,10 @@ const stays = [
     status: "Planning",
     note: "West coast section.",
     things: [
-      { name: "Gordon River Cruise", mapQuery: "Gordon River Cruises Strahan Tasmania" },
-      { name: "Sarah Island", mapQuery: "Sarah Island Tasmania" },
-      { name: "West coast lookouts", mapQuery: "lookouts near Strahan Tasmania" },
-      { name: "Pub", mapQuery: "pubs Strahan Tasmania" },
+      { name: "Gordon River Cruise", mapQuery: "Gordon River Cruises Strahan Tasmania", distance: "Strahan waterfront" },
+      { name: "Sarah Island", mapQuery: "Sarah Island Tasmania", distance: "By cruise / boat" },
+      { name: "West coast lookouts", mapQuery: "lookouts near Strahan Tasmania", distance: "Varies" },
+      { name: "Pub", mapQuery: "pubs Strahan Tasmania", distance: "Local" },
     ],
   },
   {
@@ -148,10 +137,10 @@ const stays = [
     status: "Planning",
     note: "Keep some flexibility here for weather and possible snow.",
     things: [
-      { name: "Dove Lake", mapQuery: "Dove Lake Tasmania" },
-      { name: "Wombats", mapQuery: "Cradle Mountain Tasmania" },
-      { name: "Photography", mapQuery: "Cradle Mountain Tasmania" },
-      { name: "Snow chase if conditions suit", mapQuery: "Cradle Mountain Tasmania" },
+      { name: "Dove Lake", mapQuery: "Dove Lake Tasmania", distance: "Park shuttle / local" },
+      { name: "Wombats", mapQuery: "Cradle Mountain Tasmania", distance: "Local" },
+      { name: "Photography", mapQuery: "Cradle Mountain Tasmania", distance: "Local" },
+      { name: "Snow chase if conditions suit", mapQuery: "Cradle Mountain Tasmania", distance: "Weather dependent" },
     ],
   },
   {
@@ -163,9 +152,9 @@ const stays = [
     status: "Planning",
     note: "Final Tasmania night before the ferry.",
     things: [
-      { name: "Devonport", mapQuery: "Devonport Tasmania" },
-      { name: "Position close to ferry", mapQuery: "Spirit of Tasmania Devonport Terminal" },
-      { name: "Final dinner in Tasmania", mapQuery: "restaurants Devonport Tasmania" },
+      { name: "Devonport", mapQuery: "Devonport Tasmania", distance: "Destination option" },
+      { name: "Spirit of Tasmania terminal", mapQuery: "Spirit of Tasmania Devonport Terminal", distance: "Local if Devonport" },
+      { name: "Final dinner in Tasmania", mapQuery: "restaurants Devonport Tasmania", distance: "Local if Devonport" },
     ],
   },
   {
@@ -177,9 +166,9 @@ const stays = [
     status: "Booked",
     note: "Return sailing is booked for 15 October.",
     things: [
-      { name: "Spirit of Tasmania Devonport Terminal", mapQuery: "Spirit of Tasmania Devonport Terminal" },
-      { name: "Dinner onboard" },
-      { name: "Sleep on the boat" },
+      { name: "Spirit of Tasmania Devonport Terminal", mapQuery: "Spirit of Tasmania Devonport Terminal", distance: "Destination" },
+      { name: "Dinner onboard", distance: "Onboard" },
+      { name: "Sleep on the boat", distance: "Onboard" },
     ],
   },
   {
@@ -191,26 +180,146 @@ const stays = [
     status: "Finish",
     note: "Drive home from Geelong.",
     things: [
-      { name: "Drive home", mapQuery: "Sydney NSW Australia" },
-      { name: "Unpack later" },
-      { name: "Trip done" },
+      { name: "Drive home", mapQuery: "Sydney NSW Australia", distance: "~920 km" },
+      { name: "Unpack later", distance: "—" },
+      { name: "Trip done", distance: "—" },
     ],
   },
 ];
 
 const routes = {
-  sep26: { from: "Overnight stop", to: "Geelong / ferry", direct: "Direct route", scenic: "TBC", offroad: "Not needed" },
-  hadspen: { from: "Devonport", to: "Hadspen", direct: "Direct route", scenic: "Optional stops", offroad: "Not needed" },
-  lulworth: { from: "Hadspen", to: "Lulworth", direct: "Direct route", scenic: "Scenic option to compare", offroad: "Optional" },
-  sthelens: { from: "Lulworth", to: "St Helens", direct: "Direct route", scenic: "Via Gladstone / north-east back roads", offroad: "4WD options to research" },
-  bicheno: { from: "St Helens", to: "Bicheno", direct: "Coastal route", scenic: "Bay of Fires stops", offroad: "Optional detours" },
-  colesbay: { from: "Bicheno", to: "Coles Bay", direct: "Direct route", scenic: "Coastal stops", offroad: "Not a priority" },
-  carlton: { from: "Coles Bay", to: "Carlton River", direct: "Direct route", scenic: "Scenic option to compare", offroad: "Optional" },
-  strahan: { from: "Carlton River", to: "Strahan", direct: "Direct route", scenic: "Make it a touring day", offroad: "Optional" },
-  cradle: { from: "Strahan", to: "Cradle Mountain", direct: "Direct route", scenic: "Scenic west coast drive", offroad: "Optional" },
-  northcoast: { from: "Cradle Mountain", to: "North Coast", direct: "Direct route", scenic: "Flexible final day", offroad: "Optional" },
-  returnferry: { from: "North Coast", to: "Spirit of Tasmania", direct: "Short run to ferry", scenic: "Not needed", offroad: "Not needed" },
-  home: { from: "Geelong", to: "Sydney", direct: "Direct route home", scenic: "Only if we feel like it", offroad: "No" },
+  sep26: {
+    from: "Sydney",
+    to: "Spirit of Tasmania – Geelong",
+    origin: "Sydney NSW Australia",
+    destination: "Spirit of Tasmania Geelong Terminal",
+    distance: "920 km",
+    drive: "~9 h 45 min",
+    direct: "M31 / Hume → Geelong",
+    scenic: "No — get to the boat",
+    offroad: "No",
+  },
+  hadspen: {
+    from: "Devonport",
+    to: "Hadspen",
+    origin: "Spirit of Tasmania Devonport Terminal",
+    destination: "Discovery Parks Hadspen Tasmania",
+    distance: "88 km",
+    drive: "~1 h",
+    direct: "Bass Hwy / Meander Valley",
+    scenic: "Optional stops",
+    offroad: "Not needed",
+  },
+  lulworth: {
+    from: "Hadspen",
+    to: "Lulworth",
+    origin: "Discovery Parks Hadspen Tasmania",
+    destination: "Lulworth Tasmania Australia",
+    distance: "~72 km",
+    drive: "~1 h 5 min",
+    direct: "Via Launceston / East Tamar",
+    scenic: "Tamar / north coast options",
+    offroad: "Optional",
+  },
+  sthelens: {
+    from: "Lulworth",
+    to: "St Helens",
+    origin: "Lulworth Tasmania Australia",
+    destination: "St Helens Tasmania Australia",
+    distance: "~150 km",
+    drive: "~2 h 30 min direct",
+    direct: "Via Bridport / north-east",
+    scenic: "Via Gladstone / Ansons Bay",
+    offroad: "Legal 4WD detours to research",
+  },
+  bicheno: {
+    from: "St Helens",
+    to: "Bicheno",
+    origin: "St Helens Tasmania Australia",
+    destination: "Bicheno Tasmania Australia",
+    distance: "76 km",
+    drive: "~55 min",
+    direct: "Tasman Hwy coastal route",
+    scenic: "Bay of Fires stops before leaving",
+    offroad: "Optional detours",
+  },
+  colesbay: {
+    from: "Bicheno",
+    to: "Coles Bay",
+    origin: "Bicheno Tasmania Australia",
+    destination: "Coles Bay Tasmania Australia",
+    distance: "38 km",
+    drive: "~28 min",
+    direct: "Tasman Hwy / Coles Bay Rd",
+    scenic: "Coastal stops",
+    offroad: "Not a priority",
+  },
+  carlton: {
+    from: "Coles Bay",
+    to: "Carlton River",
+    origin: "Coles Bay Tasmania Australia",
+    destination: "Carlton River Tasmania Australia",
+    distance: "~185 km",
+    drive: "~2 h 20 min",
+    direct: "East coast south via Sorell",
+    scenic: "Stops around Swansea / Orford",
+    offroad: "Optional",
+  },
+  strahan: {
+    from: "Carlton River",
+    to: "Strahan",
+    origin: "Carlton River Tasmania Australia",
+    destination: "Strahan Tasmania Australia",
+    distance: "~340 km",
+    drive: "~5 h",
+    direct: "Via Hobart / Lyell Hwy",
+    scenic: "Make it a full touring day",
+    offroad: "Optional",
+  },
+  cradle: {
+    from: "Strahan",
+    to: "Cradle Mountain",
+    origin: "Strahan Tasmania Australia",
+    destination: "Cradle Mountain Visitor Centre Tasmania",
+    distance: "138 km",
+    drive: "~1 h 55 min",
+    direct: "Zeehan / Rosebery / Tullah",
+    scenic: "West coast stops",
+    offroad: "Optional",
+  },
+  northcoast: {
+    from: "Cradle Mountain",
+    to: "Devonport / North Coast",
+    origin: "Cradle Mountain Visitor Centre Tasmania",
+    destination: "Devonport Tasmania Australia",
+    distance: "~78 km to Devonport",
+    drive: "~1 h",
+    direct: "Via Sheffield",
+    scenic: "Flexible final day",
+    offroad: "Optional",
+  },
+  returnferry: {
+    from: "North Coast",
+    to: "Spirit of Tasmania",
+    origin: "Devonport Tasmania Australia",
+    destination: "Spirit of Tasmania Devonport Terminal",
+    distance: "Local if Devonport",
+    drive: "Allow 15–20 min",
+    direct: "Straight to terminal",
+    scenic: "Not needed",
+    offroad: "No",
+  },
+  home: {
+    from: "Geelong",
+    to: "Sydney",
+    origin: "Spirit of Tasmania Geelong Terminal",
+    destination: "Sydney NSW Australia",
+    distance: "~920 km",
+    drive: "~9 h 45 min",
+    direct: "M31 / Hume",
+    scenic: "Only if we feel like it",
+    offroad: "No",
+  },
 };
 
 function RouteCard({ route }) {
@@ -218,13 +327,21 @@ function RouteCard({ route }) {
     <div className="routeCard">
       <div className="routeTop">
         <span>🚙 {route.from} → {route.to}</span>
-        <span className="routeNumbers">Distance: — &nbsp; • &nbsp; Drive: —</span>
+        <span className="routeNumbers">{route.distance} &nbsp; • &nbsp; {route.drive}</span>
       </div>
       <div className="routeOptions">
         <span><strong>Direct:</strong> {route.direct}</span>
         <span><strong>Scenic:</strong> {route.scenic}</span>
         <span><strong>4WD:</strong> {route.offroad}</span>
       </div>
+      <a
+        className="routeMapLink"
+        href={directionsUrl(route.origin, route.destination)}
+        target="_blank"
+        rel="noreferrer"
+      >
+        Open route in Google Maps ↗
+      </a>
     </div>
   );
 }
@@ -236,17 +353,17 @@ export default function Home() {
     <Layout>
       <section className="plannerIntro">
         <h2>Where are we sleeping?</h2>
-        <p>Tap any stay to see what we can do while we are there. Map links open straight in Google Maps.</p>
+        <p>Tap any stay for nearby ideas. Tap any map link to open it straight in Google Maps.</p>
       </section>
 
       <div className="calendarList">
         {stays.map((stay, index) => {
           const isOpen = openStay === stay.id;
-          const route = index > 0 ? routes[stay.id] : null;
+          const route = routes[stay.id];
 
           return (
             <div key={stay.id}>
-              {route && <RouteCard route={route} />}
+              {(index === 0 || route) && route && <RouteCard route={route} />}
 
               <section className={`stayCard ${isOpen ? "open" : ""}`}>
                 <button
@@ -300,7 +417,7 @@ export default function Home() {
                           ) : (
                             <span>{thing.name}</span>
                           )}
-                          <span className="activityDistance">Distance: —</span>
+                          <span className="activityDistance">{thing.distance}</span>
                         </div>
                       ))}
                     </div>
@@ -313,7 +430,7 @@ export default function Home() {
       </div>
 
       <p className="plannerNote">
-        Distances and drive times are deliberately blank until we verify each leg — no made-up numbers.
+        Drive times are planning estimates. Tap the Google Maps route before travel for the live route and traffic.
       </p>
     </Layout>
   );
