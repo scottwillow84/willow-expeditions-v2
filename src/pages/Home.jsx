@@ -53,31 +53,17 @@ const stays = [
   },
   {
     id: "sthelens",
-    dates: "Thu 1 Oct",
-    nights: "1 night",
-    place: "St Helens",
-    mapQuery: "St Helens Tasmania Australia",
-    status: "Planning",
-    note: "Current idea is to make the drive from Lulworth part of the day.",
+    dates: "Thu 1 – Fri 2 Oct",
+    nights: "2 nights",
+    place: "Tasman Holiday Parks – St Helens",
+    mapQuery: "Tasman Holiday Parks St Helens Tasmania",
+    status: "Booked",
+    note: "Bay Breeze Cabin • Sleeps 6 • $431 total. Check out Sat 3 Oct.",
     things: [
       { name: "Bay of Fires", mapQuery: "Bay of Fires Tasmania", distance: "~11–30 km • 15–30 min" },
       { name: "Binalong Bay", mapQuery: "Binalong Bay Tasmania", distance: "11 km • ~10–15 min" },
       { name: "The Gardens", mapQuery: "The Gardens Bay of Fires Tasmania", distance: "~24 km • ~25 min" },
       { name: "Seafood / pub", mapQuery: "seafood pub St Helens Tasmania", distance: "Local" },
-    ],
-  },
-  {
-    id: "bicheno",
-    dates: "Fri 2 Oct",
-    nights: "1 night",
-    place: "Bicheno",
-    mapQuery: "Bicheno Tasmania Australia",
-    status: "Planning",
-    note: "East coast stop before Freycinet.",
-    things: [
-      { name: "Bicheno Blowhole", mapQuery: "Bicheno Blowhole Tasmania", distance: "Local • few min" },
-      { name: "Little Penguin Tour", mapQuery: "Bicheno Penguin Tours Tasmania", distance: "Local • few min" },
-      { name: "Coastal exploring", mapQuery: "Bicheno Tasmania", distance: "Local" },
     ],
   },
   {
@@ -226,34 +212,23 @@ const routes = {
     from: "Lulworth",
     to: "St Helens",
     origin: "Lulworth Tasmania Australia",
-    destination: "St Helens Tasmania Australia",
+    destination: "Tasman Holiday Parks St Helens Tasmania",
     distance: "~150 km",
     drive: "~2 h 30 min direct",
     direct: "Via Bridport / north-east",
     scenic: "Via Gladstone / Ansons Bay",
     offroad: "Legal 4WD detours to research",
   },
-  bicheno: {
-    from: "St Helens",
-    to: "Bicheno",
-    origin: "St Helens Tasmania Australia",
-    destination: "Bicheno Tasmania Australia",
-    distance: "76 km",
-    drive: "~55 min",
-    direct: "Tasman Hwy coastal route",
-    scenic: "Bay of Fires stops before leaving",
-    offroad: "Optional detours",
-  },
   colesbay: {
-    from: "Bicheno",
-    to: "Coles Bay",
-    origin: "Bicheno Tasmania Australia",
+    from: "St Helens",
+    to: "Coles Bay / Freycinet",
+    origin: "Tasman Holiday Parks St Helens Tasmania",
     destination: "Coles Bay Tasmania Australia",
-    distance: "38 km",
-    drive: "~28 min",
-    direct: "Tasman Hwy / Coles Bay Rd",
-    scenic: "Coastal stops",
-    offroad: "Not a priority",
+    distance: "~114 km",
+    drive: "~1 h 25 min direct",
+    direct: "Tasman Hwy via Scamander & Bicheno",
+    scenic: "Stop at Bicheno / coastal lookouts",
+    offroad: "Optional detours",
   },
   carlton: {
     from: "Coles Bay",
@@ -361,17 +336,17 @@ export default function Home() {
     <Layout>
       <section className="plannerIntro">
         <h2>Where are we sleeping?</h2>
-        <p>Tap any stay for nearby ideas. Tap a route to compare ways of getting there.</p>
+        <p>Tap any stay for nearby ideas. Tap any map link to open it straight in Google Maps.</p>
       </section>
 
       <div className="calendarList">
-        {stays.map((stay, index) => {
+        {stays.map((stay) => {
           const isOpen = openStay === stay.id;
           const route = routes[stay.id];
 
           return (
             <div key={stay.id}>
-              {(index === 0 || route) && route && <RouteCard route={route} />}
+              {route && <RouteCard route={route} />}
 
               <section className={`stayCard ${isOpen ? "open" : ""}`}>
                 <button
@@ -438,7 +413,7 @@ export default function Home() {
       </div>
 
       <p className="plannerNote">
-        Drive times are planning estimates. Tap Google Maps before travel for the live route, traffic and road conditions.
+        Drive times are planning estimates. Tap the Google Maps route before travel for the live route and traffic.
       </p>
     </Layout>
   );
