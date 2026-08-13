@@ -28,6 +28,10 @@ button {
   color: inherit;
 }
 
+a {
+  color: inherit;
+}
+
 .app {
   min-height: 100vh;
 }
@@ -232,6 +236,23 @@ main {
   padding: 0 18px 18px 204px;
 }
 
+.stayMapLink {
+  display: inline-flex;
+  align-items: center;
+  margin: 0 0 14px;
+  padding: 9px 12px;
+  border-radius: 9px;
+  background: #eef4ff;
+  color: #1f4f8f;
+  font-weight: 800;
+  text-decoration: none;
+}
+
+.stayMapLink:hover,
+.activityMapLink:hover {
+  text-decoration: underline;
+}
+
 .stayDetails h4 {
   margin-bottom: 10px;
   font-size: 0.95rem;
@@ -254,6 +275,12 @@ main {
 
 .activityRow:last-child {
   border-bottom: 0;
+}
+
+.activityMapLink {
+  color: #245b98;
+  font-weight: 700;
+  text-decoration: none;
 }
 
 .activityDistance {
@@ -316,6 +343,12 @@ main {
 
   .stayDetails {
     padding: 0 15px 15px;
+  }
+
+  .stayMapLink {
+    display: flex;
+    width: 100%;
+    justify-content: center;
   }
 
   .routeCard {
