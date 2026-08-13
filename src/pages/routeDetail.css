@@ -1,0 +1,170 @@
+.routePage {
+  display: grid;
+  gap: 18px;
+}
+
+.backLink {
+  width: fit-content;
+  color: #245b98;
+  font-weight: 800;
+  text-decoration: none;
+}
+
+.routePageHeader {
+  display: grid;
+  gap: 6px;
+}
+
+.routeKicker {
+  color: #667085;
+  font-size: 0.9rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.routePageHeader h2 {
+  margin: 0;
+  color: #172033;
+}
+
+.routePageHeader > p:last-child {
+  color: #5f6877;
+  line-height: 1.5;
+}
+
+.routeChoiceList {
+  display: grid;
+  gap: 14px;
+}
+
+.routeChoice {
+  padding: 18px;
+  border: 1px solid #dfe3e8;
+  border-radius: 14px;
+  background: #fff;
+}
+
+.routeChoiceHead {
+  display: flex;
+  justify-content: space-between;
+  gap: 16px;
+  align-items: flex-start;
+}
+
+.routeChoiceBadge {
+  display: inline-block;
+  margin-bottom: 6px;
+  padding: 4px 9px;
+  border-radius: 999px;
+  background: #eef1f4;
+  color: #4b5563;
+  font-size: 0.78rem;
+  font-weight: 800;
+}
+
+.routeChoice h3 {
+  font-size: 1.2rem;
+}
+
+.routeChoiceNumbers {
+  display: grid;
+  justify-items: end;
+  white-space: nowrap;
+}
+
+.routeChoiceNumbers strong {
+  font-size: 1.12rem;
+}
+
+.routeChoiceNumbers span {
+  color: #667085;
+  font-size: 0.92rem;
+}
+
+.routeRoadName {
+  margin: 14px 0;
+  color: #344054;
+  font-weight: 700;
+  line-height: 1.45;
+}
+
+.routeFacts {
+  display: grid;
+  gap: 6px;
+  margin-bottom: 14px;
+  color: #5f6877;
+  line-height: 1.45;
+}
+
+.routeChoice h4 {
+  margin-bottom: 8px;
+  font-size: 0.95rem;
+}
+
+.routeStops {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.routeStops a {
+  padding: 7px 9px;
+  border-radius: 8px;
+  background: #eef4ff;
+  color: #1f4f8f;
+  font-weight: 700;
+  text-decoration: none;
+}
+
+.routeNote {
+  margin: 14px 0;
+  padding: 11px 12px;
+  border-left: 3px solid #9ca6b5;
+  background: #f5f7f9;
+  color: #4b5563;
+  line-height: 1.45;
+}
+
+.routeDirectionsButton {
+  display: inline-flex;
+  padding: 10px 12px;
+  border-radius: 9px;
+  background: #245b98;
+  color: #fff;
+  font-weight: 800;
+  text-decoration: none;
+}
+
+.routeDisclaimer {
+  padding: 13px;
+  border-radius: 10px;
+  background: #eef1f4;
+  color: #5f6877;
+  font-size: 0.9rem;
+  line-height: 1.45;
+}
+
+@media (max-width: 700px) {
+  .routeChoice {
+    padding: 15px;
+  }
+
+  .routeChoiceHead {
+    gap: 10px;
+  }
+
+  .routeChoiceNumbers {
+    font-size: 0.95rem;
+  }
+
+  .routeStops {
+    display: grid;
+  }
+
+  .routeDirectionsButton {
+    display: flex;
+    width: 100%;
+    justify-content: center;
+  }
+}
