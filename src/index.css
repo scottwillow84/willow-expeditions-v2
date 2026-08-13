@@ -129,6 +129,19 @@ main {
   line-height: 1.4;
 }
 
+.routeMapLink {
+  display: inline-flex;
+  margin-top: 10px;
+  color: #245b98;
+  font-size: 0.9rem;
+  font-weight: 800;
+  text-decoration: none;
+}
+
+.routeMapLink:hover {
+  text-decoration: underline;
+}
+
 .stayCard {
   overflow: hidden;
   background: #ffffff;
@@ -368,7 +381,19 @@ main {
     gap: 5px;
   }
 
+  .routeMapLink {
+    display: flex;
+    width: 100%;
+    margin-top: 10px;
+    justify-content: flex-start;
+  }
+
   .activityRow {
     align-items: flex-start;
+  }
+
+  .activityDistance {
+    white-space: normal;
+    text-align: right;
   }
 }
