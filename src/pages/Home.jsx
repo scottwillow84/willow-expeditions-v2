@@ -1,36 +1,50 @@
 import { useState } from "react";
 import Layout from "../components/Layout";
 
+const mapsUrl = (query) =>
+  `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(query)}`;
+
 const stays = [
   {
     id: "sep25",
     dates: "Fri 25 Sep",
     nights: "1 night",
     place: "Overnight stop – TBC",
+    mapQuery: "Geelong Victoria Australia",
     status: "Planning",
     note: "Scott & Jane drive south from Sydney.",
-    things: ["Easy dinner", "Early night", "Keep the first day simple"],
+    things: [
+      { name: "Easy dinner", mapQuery: "restaurants Geelong Victoria" },
+      { name: "Early night" },
+      { name: "Keep the first day simple" },
+    ],
   },
   {
     id: "sep26",
     dates: "Sat 26 Sep",
     nights: "1 night",
     place: "Spirit of Tasmania",
+    mapQuery: "Spirit of Tasmania Geelong Terminal",
     status: "Booked",
     note: "2-bed porthole cabin for Scott & Jane.",
-    things: ["Board ferry", "Dinner onboard", "Cabin booked"],
+    things: [
+      { name: "Spirit of Tasmania Geelong Terminal", mapQuery: "Spirit of Tasmania Geelong Terminal" },
+      { name: "Dinner onboard" },
+      { name: "Cabin booked" },
+    ],
   },
   {
     id: "hadspen",
     dates: "Sun 27 – Mon 28 Sep",
     nights: "2 nights",
     place: "Discovery Parks Hadspen",
+    mapQuery: "Discovery Parks Hadspen Tasmania",
     status: "Booked",
     note: "Scott & Jane first night. Family together from Monday afternoon.",
     things: [
-      "Launceston exploring",
-      "Collect Sarah, Mia & Simone – Mon 28 Sep, 3:20 pm",
-      "Family dinner",
+      { name: "Launceston", mapQuery: "Launceston Tasmania" },
+      { name: "Launceston Airport", mapQuery: "Launceston Airport Tasmania" },
+      { name: "Family dinner", mapQuery: "family restaurants Launceston Tasmania" },
     ],
   },
   {
@@ -38,51 +52,76 @@ const stays = [
     dates: "Tue 29 – Wed 30 Sep",
     nights: "2 nights",
     place: "Lulworth",
+    mapQuery: "Lulworth Tasmania Australia",
     status: "Booked",
     note: "Relaxed coast stay for all five of us.",
-    things: ["Beach", "Local exploring", "Good pub", "Easy family day"],
+    things: [
+      { name: "Lulworth Beach", mapQuery: "Lulworth Beach Tasmania" },
+      { name: "Local exploring", mapQuery: "Lulworth Tasmania" },
+      { name: "Good pub", mapQuery: "pubs near Lulworth Tasmania" },
+      { name: "Easy family day" },
+    ],
   },
   {
     id: "sthelens",
     dates: "Thu 1 Oct",
     nights: "1 night",
     place: "St Helens",
+    mapQuery: "St Helens Tasmania Australia",
     status: "Planning",
     note: "Current idea is to make the drive from Lulworth part of the day.",
-    things: ["Bay of Fires", "Binalong Bay", "The Gardens", "Seafood / pub"],
+    things: [
+      { name: "Bay of Fires", mapQuery: "Bay of Fires Tasmania" },
+      { name: "Binalong Bay", mapQuery: "Binalong Bay Tasmania" },
+      { name: "The Gardens", mapQuery: "The Gardens Bay of Fires Tasmania" },
+      { name: "Seafood / pub", mapQuery: "seafood pub St Helens Tasmania" },
+    ],
   },
   {
     id: "bicheno",
     dates: "Fri 2 Oct",
     nights: "1 night",
     place: "Bicheno",
+    mapQuery: "Bicheno Tasmania Australia",
     status: "Planning",
     note: "East coast stop before Freycinet.",
-    things: ["Bicheno Blowhole", "Little Penguin Tour", "Coastal exploring"],
+    things: [
+      { name: "Bicheno Blowhole", mapQuery: "Bicheno Blowhole Tasmania" },
+      { name: "Little Penguin Tour", mapQuery: "Bicheno Penguin Tours Tasmania" },
+      { name: "Coastal exploring", mapQuery: "Bicheno Tasmania" },
+    ],
   },
   {
     id: "colesbay",
     dates: "Sat 3 – Sun 4 Oct",
     nights: "2 nights",
     place: "Coles Bay / Freycinet",
+    mapQuery: "Coles Bay Tasmania Australia",
     status: "Planning",
     note: "Two nights so we are not packing up every morning.",
-    things: ["Wineglass Bay", "Cape Tourville", "Walks", "Photography", "Seafood"],
+    things: [
+      { name: "Wineglass Bay", mapQuery: "Wineglass Bay Tasmania" },
+      { name: "Cape Tourville", mapQuery: "Cape Tourville Lighthouse Tasmania" },
+      { name: "Freycinet walks", mapQuery: "Freycinet National Park Tasmania" },
+      { name: "Photography", mapQuery: "Freycinet National Park Tasmania" },
+      { name: "Seafood", mapQuery: "seafood Coles Bay Tasmania" },
+    ],
   },
   {
     id: "carlton",
     dates: "Mon 5 – Fri 9 Oct",
     nights: "5 nights",
     place: "Carlton River",
+    mapQuery: "Carlton River Tasmania Australia",
     status: "Locked In",
     note: "Family base for the middle of the trip.",
     things: [
-      "Port Arthur",
-      "Tasman Peninsula",
-      "Remarkable Cave",
-      "Hobart day trip",
-      "kunanyi / Mount Wellington",
-      "Family / free day",
+      { name: "Port Arthur Historic Site", mapQuery: "Port Arthur Historic Site Tasmania" },
+      { name: "Tasman Peninsula", mapQuery: "Tasman Peninsula Tasmania" },
+      { name: "Remarkable Cave", mapQuery: "Remarkable Cave Tasmania" },
+      { name: "Hobart", mapQuery: "Hobart Tasmania" },
+      { name: "kunanyi / Mount Wellington", mapQuery: "kunanyi Mount Wellington Tasmania" },
+      { name: "Family / free day" },
     ],
   },
   {
@@ -90,45 +129,72 @@ const stays = [
     dates: "Sat 10 – Sun 11 Oct",
     nights: "2 nights",
     place: "Strahan",
+    mapQuery: "Strahan Tasmania Australia",
     status: "Planning",
     note: "West coast section.",
-    things: ["Gordon River Cruise", "Sarah Island", "West coast lookouts", "Pub"],
+    things: [
+      { name: "Gordon River Cruise", mapQuery: "Gordon River Cruises Strahan Tasmania" },
+      { name: "Sarah Island", mapQuery: "Sarah Island Tasmania" },
+      { name: "West coast lookouts", mapQuery: "lookouts near Strahan Tasmania" },
+      { name: "Pub", mapQuery: "pubs Strahan Tasmania" },
+    ],
   },
   {
     id: "cradle",
     dates: "Mon 12 – Tue 13 Oct",
     nights: "2 nights",
     place: "Cradle Mountain",
+    mapQuery: "Cradle Mountain Tasmania Australia",
     status: "Planning",
     note: "Keep some flexibility here for weather and possible snow.",
-    things: ["Dove Lake", "Wombats", "Photography", "Snow chase if conditions suit"],
+    things: [
+      { name: "Dove Lake", mapQuery: "Dove Lake Tasmania" },
+      { name: "Wombats", mapQuery: "Cradle Mountain Tasmania" },
+      { name: "Photography", mapQuery: "Cradle Mountain Tasmania" },
+      { name: "Snow chase if conditions suit", mapQuery: "Cradle Mountain Tasmania" },
+    ],
   },
   {
     id: "northcoast",
     dates: "Wed 14 Oct",
     nights: "1 night",
     place: "Devonport / North Coast – TBC",
+    mapQuery: "Devonport Tasmania Australia",
     status: "Planning",
     note: "Final Tasmania night before the ferry.",
-    things: ["Easy final touring day", "Position close to ferry", "Final dinner in Tasmania"],
+    things: [
+      { name: "Devonport", mapQuery: "Devonport Tasmania" },
+      { name: "Position close to ferry", mapQuery: "Spirit of Tasmania Devonport Terminal" },
+      { name: "Final dinner in Tasmania", mapQuery: "restaurants Devonport Tasmania" },
+    ],
   },
   {
     id: "returnferry",
     dates: "Thu 15 Oct",
     nights: "1 night",
     place: "Spirit of Tasmania",
+    mapQuery: "Spirit of Tasmania Devonport Terminal",
     status: "Booked",
     note: "Return sailing is booked for 15 October.",
-    things: ["Board return ferry", "Dinner onboard", "Sleep on the boat"],
+    things: [
+      { name: "Spirit of Tasmania Devonport Terminal", mapQuery: "Spirit of Tasmania Devonport Terminal" },
+      { name: "Dinner onboard" },
+      { name: "Sleep on the boat" },
+    ],
   },
   {
     id: "home",
     dates: "Fri 16 Oct",
     nights: "Home",
     place: "Sydney",
+    mapQuery: "Sydney NSW Australia",
     status: "Finish",
     note: "Drive home from Geelong.",
-    things: ["Drive home", "Unpack later", "Trip done"],
+    things: [
+      { name: "Drive home", mapQuery: "Sydney NSW Australia" },
+      { name: "Unpack later" },
+      { name: "Trip done" },
+    ],
   },
 ];
 
@@ -170,7 +236,7 @@ export default function Home() {
     <Layout>
       <section className="plannerIntro">
         <h2>Where are we sleeping?</h2>
-        <p>Tap any stay to see what we can do while we are there. Driving details sit between each stop.</p>
+        <p>Tap any stay to see what we can do while we are there. Map links open straight in Google Maps.</p>
       </section>
 
       <div className="calendarList">
@@ -209,11 +275,31 @@ export default function Home() {
 
                 {isOpen && (
                   <div className="stayDetails">
+                    <a
+                      className="stayMapLink"
+                      href={mapsUrl(stay.mapQuery)}
+                      target="_blank"
+                      rel="noreferrer"
+                    >
+                      📍 Open {stay.place} in Google Maps ↗
+                    </a>
+
                     <h4>Things to do</h4>
                     <div className="activityList">
                       {stay.things.map((thing) => (
-                        <div className="activityRow" key={thing}>
-                          <span>{thing}</span>
+                        <div className="activityRow" key={thing.name}>
+                          {thing.mapQuery ? (
+                            <a
+                              className="activityMapLink"
+                              href={mapsUrl(thing.mapQuery)}
+                              target="_blank"
+                              rel="noreferrer"
+                            >
+                              📍 {thing.name} ↗
+                            </a>
+                          ) : (
+                            <span>{thing.name}</span>
+                          )}
                           <span className="activityDistance">Distance: —</span>
                         </div>
                       ))}
