@@ -1,11 +1,9 @@
 import { useState } from "react";
 import Layout from "../components/Layout";
+import { routePlans } from "../data/routeOptions";
 
 const mapsUrl = (query) =>
   `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(query)}`;
-
-const directionsUrl = (origin, destination) =>
-  `https://www.google.com/maps/dir/?api=1&origin=${encodeURIComponent(origin)}&destination=${encodeURIComponent(destination)}&travelmode=driving`;
 
 const stays = [
   {
@@ -160,119 +158,15 @@ const stays = [
   },
 ];
 
-const routes = {
-  sep26: {
-    from: "Sydney",
-    to: "Spirit of Tasmania – Geelong",
-    origin: "Sydney NSW Australia",
-    destination: "Spirit of Tasmania Geelong Terminal",
-    distance: "920 km",
-    drive: "~9 h 45 min",
-    direct: "M31 / Hume → Geelong",
-    scenic: "No — get to the boat",
-    offroad: "No",
-  },
-  hadspen: {
-    from: "Devonport",
-    to: "Hadspen",
-    origin: "Spirit of Tasmania Devonport Terminal",
-    destination: "Discovery Parks Hadspen Tasmania",
-    distance: "88 km",
-    drive: "~1 h",
-    direct: "Bass Hwy / Meander Valley",
-    scenic: "Optional stops",
-    offroad: "Not needed",
-  },
-  lulworth: {
-    from: "Hadspen",
-    to: "Lulworth",
-    origin: "Discovery Parks Hadspen Tasmania",
-    destination: "Lulworth Tasmania Australia",
-    distance: "~70–75 km",
-    drive: "~55–60 min",
-    direct: "Three good route choices",
-    scenic: "Lilydale / Pipers River options",
-    offroad: "Industry Road rural shortcut option",
-    comparePath: "#/route/hadspen-lulworth",
-  },
-  sthelens: {
-    from: "Lulworth",
-    to: "St Helens",
-    origin: "Lulworth Tasmania Australia",
-    destination: "Tasman Holiday Parks St Helens Tasmania",
-    distance: "~150 km",
-    drive: "~2 h 30 min direct",
-    direct: "Via Bridport / north-east",
-    scenic: "Via Gladstone / Ansons Bay",
-    offroad: "Legal 4WD detours to research",
-  },
-  bicheno: {
-    from: "St Helens",
-    to: "Bicheno",
-    origin: "Tasman Holiday Parks St Helens Tasmania",
-    destination: "8 Banksia Street Bicheno TAS 7215 Australia",
-    distance: "~75 km",
-    drive: "~1 h",
-    direct: "Tasman Hwy via Scamander",
-    scenic: "Coastal stops along the Great Eastern Drive",
-    offroad: "Optional detours",
-  },
-  carlton: {
-    from: "Bicheno",
-    to: "Carlton River",
-    origin: "8 Banksia Street Bicheno TAS 7215 Australia",
-    destination: "Carlton River Tasmania Australia",
-    distance: "~150 km",
-    drive: "~2 h",
-    direct: "Great Eastern Drive south via Swansea / Triabunna / Orford",
-    scenic: "Plenty of east-coast stops if we make a day of it",
-    offroad: "Optional",
-  },
-  strahan: {
-    from: "Carlton River",
-    to: "Strahan",
-    origin: "Carlton River Tasmania Australia",
-    destination: "10 Innes Street West Strahan TAS 7468 Australia",
-    distance: "~340 km",
-    drive: "~5 h",
-    direct: "Via Hobart / Lyell Hwy",
-    scenic: "Make it a full touring day",
-    offroad: "Optional",
-  },
-  smithton: {
-    from: "Strahan",
-    to: "Smithton",
-    origin: "10 Innes Street West Strahan TAS 7468 Australia",
-    destination: "Tall Timbers Hotel 15 Scotchtown Road Smithton TAS 7330 Australia",
-    distance: "~260 km",
-    drive: "~3 h 30 min",
-    direct: "North via Zeehan / Burnie then west to Smithton",
-    scenic: "West Coast and north-west touring day",
-    offroad: "Optional detours",
-  },
-  returnferry: {
-    from: "Smithton",
-    to: "Spirit of Tasmania – Devonport",
-    origin: "Tall Timbers Hotel 15 Scotchtown Road Smithton TAS 7330 Australia",
-    destination: "Spirit of Tasmania Devonport Terminal",
-    distance: "~134 km",
-    drive: "~1 h 40 min",
-    direct: "Bass Hwy via Burnie",
-    scenic: "Allow extra time for a north-west coast stop if ferry timing permits",
-    offroad: "No",
-  },
-  home: {
-    from: "Geelong",
-    to: "Sydney",
-    origin: "Spirit of Tasmania Geelong Terminal",
-    destination: "Sydney NSW Australia",
-    distance: "~920 km",
-    drive: "~9 h 45 min",
-    direct: "M31 / Hume",
-    scenic: "Only if we feel like it",
-    offroad: "No",
-  },
-};
+const routes = Object.fromEntries(
+  Object.entries(routePlans).map(([id, plan]) => [
+    id,
+    {
+      ...plan.summary,
+      comparePath: `#/route/${id}`,
+    },
+  ]),
+);
 
 function RouteCard({ route }) {
   return (
@@ -282,25 +176,14 @@ function RouteCard({ route }) {
         <span className="routeNumbers">{route.distance} &nbsp; • &nbsp; {route.drive}</span>
       </div>
       <div className="routeOptions">
-        <span><strong>Direct:</strong> {route.direct}</span>
+        <span><strong>Fastest:</strong> {route.direct}</span>
         <span><strong>Scenic:</strong> {route.scenic}</span>
+        <span><strong>Touring:</strong> {route.touring}</span>
         <span><strong>4WD:</strong> {route.offroad}</span>
       </div>
-
-      {route.comparePath ? (
-        <a className="routeMapLink" href={route.comparePath}>
-          Compare the route options →
-        </a>
-      ) : (
-        <a
-          className="routeMapLink"
-          href={directionsUrl(route.origin, route.destination)}
-          target="_blank"
-          rel="noreferrer"
-        >
-          Open route in Google Maps ↗
-        </a>
-      )}
+      <a className="routeMapLink" href={route.comparePath}>
+        Compare all 4 route options →
+      </a>
     </div>
   );
 }
@@ -312,7 +195,7 @@ export default function Home() {
     <Layout>
       <section className="plannerIntro">
         <h2>Where are we sleeping?</h2>
-        <p>Tap any stay for nearby ideas. Tap any map link to open it straight in Google Maps.</p>
+        <p>Tap a stay for nearby ideas. Between stays, tap Compare all 4 route options for fastest, scenic, touring and 4WD choices.</p>
       </section>
 
       <div className="calendarList">
@@ -389,7 +272,7 @@ export default function Home() {
       </div>
 
       <p className="plannerNote">
-        Drive times are planning estimates. Tap the Google Maps route before travel for the live route and traffic.
+        Route times and distances are planning estimates. Gravel and 4WD options still need a current road-condition check before we use them.
       </p>
     </Layout>
   );
