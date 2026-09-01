@@ -6,15 +6,19 @@
 
 :root {
   font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-  color: #172033;
-  background: #f4f6f8;
+  color: #142033;
+  background: #e9eef4;
   font-synthesis: none;
   text-rendering: optimizeLegibility;
 }
 
+html {
+  scroll-behavior: smooth;
+}
+
 body {
   min-width: 320px;
-  background: #f4f6f8;
+  background: #e9eef4;
 }
 
 button,
@@ -39,135 +43,212 @@ a {
 .simpleHeader {
   position: sticky;
   top: 0;
-  z-index: 20;
+  z-index: 30;
   display: flex;
   align-items: center;
   justify-content: space-between;
   gap: 20px;
   padding: 14px 22px;
-  background: rgba(255, 255, 255, 0.96);
-  border-bottom: 1px solid #dfe3e8;
-  backdrop-filter: blur(10px);
+  color: #fff;
+  background: rgba(18, 32, 52, 0.97);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: 0 6px 24px rgba(14, 25, 42, 0.18);
+  backdrop-filter: blur(12px);
 }
 
 .tripLabel {
   margin-bottom: 2px;
-  color: #6b7280;
+  color: #b9c9df;
   font-size: 0.82rem;
-  font-weight: 700;
-  letter-spacing: 0.08em;
+  font-weight: 800;
+  letter-spacing: 0.1em;
   text-transform: uppercase;
 }
 
 .simpleHeader h1 {
+  color: #fff;
   font-size: 1.25rem;
   line-height: 1.2;
 }
 
 .tripDates {
-  color: #4b5563;
+  color: #dbe5f2;
   font-size: 0.95rem;
+  font-weight: 700;
   white-space: nowrap;
 }
 
 main {
-  width: min(900px, 100%);
+  width: min(940px, 100%);
   margin: 0 auto;
-  padding: 24px 18px 48px;
+  padding: 22px 18px 48px;
 }
 
 .plannerIntro {
-  margin-bottom: 20px;
+  margin-bottom: 14px;
+  padding: 18px 20px;
+  border: 1px solid #ccd6e3;
+  border-radius: 18px;
+  background: linear-gradient(135deg, #ffffff 0%, #f0f5fb 100%);
+  box-shadow: 0 8px 24px rgba(24, 42, 67, 0.08);
+}
+
+.introEyebrow {
+  margin-bottom: 5px;
+  color: #315d91 !important;
+  font-size: 0.78rem;
+  font-weight: 900;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
 }
 
 .plannerIntro h2 {
   margin-bottom: 6px;
-  font-size: 1.5rem;
+  color: #142033;
+  font-size: 1.55rem;
 }
 
 .plannerIntro p,
 .plannerNote {
-  color: #5f6877;
+  color: #4e5c70;
   line-height: 1.55;
+}
+
+.stayJumpBar {
+  position: sticky;
+  top: 69px;
+  z-index: 24;
+  display: flex;
+  gap: 8px;
+  overflow-x: auto;
+  margin: 0 -18px 18px;
+  padding: 10px 18px 11px;
+  background: rgba(233, 238, 244, 0.96);
+  border-bottom: 1px solid rgba(170, 184, 202, 0.6);
+  scrollbar-width: none;
+  backdrop-filter: blur(12px);
+}
+
+.stayJumpBar::-webkit-scrollbar {
+  display: none;
+}
+
+.stayJumpBar button {
+  display: inline-flex;
+  flex: 0 0 auto;
+  align-items: center;
+  gap: 6px;
+  min-height: 36px;
+  padding: 8px 11px;
+  border: 1px solid #bac8d9;
+  border-radius: 999px;
+  background: #fff;
+  color: #233751;
+  box-shadow: 0 2px 6px rgba(25, 43, 67, 0.06);
+  font-size: 0.84rem;
+  font-weight: 800;
+  cursor: pointer;
+}
+
+.stayJumpBar button:active {
+  transform: translateY(1px);
+  background: #eaf1fa;
 }
 
 .calendarList {
   display: grid;
-  gap: 12px;
+  gap: 15px;
 }
 
 .routeCard {
-  margin: 4px 10px 12px;
-  padding: 12px 14px;
-  border-left: 4px solid #8b95a5;
-  background: #e9edf2;
-  border-radius: 10px;
-  color: #384152;
+  margin: 3px 8px 12px;
+  padding: 14px 15px;
+  border: 1px solid #b8c9dc;
+  border-left: 5px solid #315f96;
+  background: #dfeaf6;
+  border-radius: 13px;
+  color: #263a53;
+  box-shadow: 0 4px 12px rgba(38, 62, 88, 0.07);
 }
 
 .routeTop {
   display: flex;
   justify-content: space-between;
   gap: 12px;
-  font-weight: 700;
+  font-weight: 800;
+}
+
+.routeTitle {
+  color: #18314e;
 }
 
 .routeNumbers {
-  color: #667085;
+  color: #4f6277;
   font-size: 0.9rem;
-  font-weight: 600;
+  font-weight: 800;
   white-space: nowrap;
 }
 
 .routeOptions {
   display: flex;
   flex-wrap: wrap;
-  gap: 8px 16px;
+  gap: 7px 16px;
   margin-top: 8px;
-  color: #5f6877;
+  color: #40546a;
   font-size: 0.9rem;
-  line-height: 1.4;
+  line-height: 1.42;
+}
+
+.routeOptions strong {
+  color: #1f4168;
 }
 
 .routeMapLink {
   display: inline-flex;
-  margin-top: 10px;
-  color: #245b98;
-  font-size: 0.9rem;
-  font-weight: 800;
+  align-items: center;
+  margin-top: 11px;
+  padding: 8px 11px;
+  border-radius: 9px;
+  background: #245b98;
+  color: #fff;
+  font-size: 0.88rem;
+  font-weight: 900;
   text-decoration: none;
 }
 
 .routeMapLink:hover {
-  text-decoration: underline;
+  background: #1c4b80;
 }
 
 .stayCard {
+  scroll-margin-top: 125px;
   overflow: hidden;
-  background: #ffffff;
-  border: 1px solid #dfe3e8;
-  border-radius: 14px;
+  background: #fff;
+  border: 1px solid #c7d1df;
+  border-radius: 17px;
+  box-shadow: 0 7px 20px rgba(21, 39, 62, 0.09);
 }
 
 .stayCard.open {
-  border-color: #9ca6b5;
+  border-color: #6e8db1;
+  box-shadow: 0 10px 28px rgba(30, 64, 103, 0.13);
 }
 
 .stayButton {
   width: 100%;
   display: grid;
-  grid-template-columns: 170px 1fr 36px;
-  gap: 16px;
+  grid-template-columns: 155px minmax(0, 1fr) 145px 38px;
+  gap: 15px;
   align-items: center;
-  padding: 18px;
+  padding: 16px;
   border: 0;
-  background: transparent;
+  background: #fff;
   text-align: left;
   cursor: pointer;
 }
 
 .stayButton:hover {
-  background: #fafbfc;
+  background: #fbfcfe;
 }
 
 .dateBlock {
@@ -176,12 +257,15 @@ main {
 }
 
 .dateText {
-  font-weight: 800;
+  color: #17263a;
+  font-size: 1rem;
+  font-weight: 900;
 }
 
 .nightText {
-  color: #7a8493;
+  color: #65748a;
   font-size: 0.9rem;
+  font-weight: 600;
 }
 
 .stayMain {
@@ -197,67 +281,164 @@ main {
 }
 
 .stayHeading h3 {
-  font-size: 1.08rem;
+  color: #132238;
+  font-size: 1.12rem;
 }
 
 .stayMain p {
-  color: #667085;
+  color: #56667c;
   line-height: 1.45;
 }
 
 .status {
   display: inline-flex;
   align-items: center;
-  min-height: 24px;
+  min-height: 25px;
   padding: 3px 9px;
   border-radius: 999px;
-  background: #eef1f4;
-  color: #4b5563;
-  font-size: 0.78rem;
-  font-weight: 800;
+  background: #e8edf3;
+  color: #43546a;
+  font-size: 0.76rem;
+  font-weight: 900;
 }
 
 .status-booked,
 .status-locked-in {
-  background: #e6f4ea;
-  color: #25633a;
+  background: #d9f1df;
+  color: #1f6035;
+  border: 1px solid #b9dfc4;
 }
 
 .status-planning {
-  background: #fff2d7;
-  color: #795400;
+  background: #fff0c9;
+  color: #6f4d00;
+  border: 1px solid #ead393;
 }
 
 .status-finish {
-  background: #e6eefc;
-  color: #294b82;
+  background: #dce8fb;
+  color: #244d83;
+  border: 1px solid #bdd1ef;
 }
 
 .chevron {
   display: grid;
-  width: 32px;
-  height: 32px;
+  width: 34px;
+  height: 34px;
   place-items: center;
   border-radius: 50%;
-  background: #eef1f4;
-  color: #4b5563;
+  background: #e5ebf2;
+  color: #31445e;
   font-size: 1.35rem;
+  font-weight: 800;
   line-height: 1;
 }
 
+.stayVisual {
+  position: relative;
+  display: flex;
+  min-height: 88px;
+  overflow: hidden;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-end;
+  padding: 10px;
+  border-radius: 13px;
+  color: #fff;
+  isolation: isolate;
+  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.16);
+}
+
+.stayVisual::before,
+.stayVisual::after {
+  content: "";
+  position: absolute;
+  z-index: -1;
+  border-radius: 50%;
+  opacity: 0.42;
+}
+
+.stayVisual::before {
+  width: 110px;
+  height: 110px;
+  right: -30px;
+  bottom: -55px;
+  background: rgba(255, 255, 255, 0.35);
+}
+
+.stayVisual::after {
+  width: 90px;
+  height: 90px;
+  top: -48px;
+  left: -20px;
+  background: rgba(255, 255, 255, 0.16);
+}
+
+.stayVisualIcon {
+  margin-bottom: auto;
+  font-size: 1.55rem;
+  filter: drop-shadow(0 2px 3px rgba(0, 0, 0, 0.22));
+}
+
+.stayVisualLabel {
+  font-size: 0.78rem;
+  font-weight: 900;
+  letter-spacing: 0.02em;
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.35);
+}
+
+.stayVisual-ferry {
+  background: linear-gradient(145deg, #11314f 0%, #2779aa 58%, #6cb8d2 100%);
+}
+
+.stayVisual-valley {
+  background: linear-gradient(145deg, #234e3a 0%, #5c8554 58%, #b5c98a 100%);
+}
+
+.stayVisual-coast {
+  background: linear-gradient(145deg, #184e63 0%, #2b8394 52%, #d6c596 100%);
+}
+
+.stayVisual-bay {
+  background: linear-gradient(145deg, #1d6575 0%, #4da5b0 48%, #d87943 100%);
+}
+
+.stayVisual-bicheno {
+  background: linear-gradient(145deg, #24495d 0%, #4d899a 50%, #c98762 100%);
+}
+
+.stayVisual-river {
+  background: linear-gradient(145deg, #264d48 0%, #5d8d78 48%, #96ad86 100%);
+}
+
+.stayVisual-west {
+  background: linear-gradient(145deg, #25323f 0%, #546a76 48%, #7996a1 100%);
+}
+
+.stayVisual-tarkine {
+  background: linear-gradient(145deg, #173f32 0%, #326f54 50%, #769b71 100%);
+}
+
+.stayVisual-home {
+  background: linear-gradient(145deg, #33435b 0%, #566b87 52%, #92a6bd 100%);
+}
+
 .stayDetails {
-  padding: 0 18px 18px 204px;
+  padding: 0 18px 18px 188px;
+  border-top: 1px solid #e2e8ef;
+  background: #fbfcfe;
 }
 
 .stayMapLink {
   display: inline-flex;
   align-items: center;
-  margin: 0 0 14px;
-  padding: 9px 12px;
-  border-radius: 9px;
-  background: #eef4ff;
-  color: #1f4f8f;
-  font-weight: 800;
+  margin: 16px 0 14px;
+  padding: 10px 13px;
+  border-radius: 10px;
+  background: #dfeaff;
+  color: #173f77;
+  border: 1px solid #c4d6f4;
+  font-weight: 900;
   text-decoration: none;
 }
 
@@ -268,13 +449,15 @@ main {
 
 .stayDetails h4 {
   margin-bottom: 10px;
-  font-size: 0.95rem;
+  color: #25364d;
+  font-size: 0.98rem;
 }
 
 .activityList {
   overflow: hidden;
-  border: 1px solid #e4e7eb;
-  border-radius: 10px;
+  border: 1px solid #d7e0ea;
+  border-radius: 11px;
+  background: #fff;
 }
 
 .activityRow {
@@ -283,7 +466,7 @@ main {
   justify-content: space-between;
   gap: 16px;
   padding: 11px 12px;
-  border-bottom: 1px solid #e9ecef;
+  border-bottom: 1px solid #e5ebf1;
 }
 
 .activityRow:last-child {
@@ -291,26 +474,28 @@ main {
 }
 
 .activityMapLink {
-  color: #245b98;
-  font-weight: 700;
+  color: #1d568f;
+  font-weight: 800;
   text-decoration: none;
 }
 
 .activityDistance {
-  color: #7a8493;
+  color: #67768a;
   font-size: 0.86rem;
+  font-weight: 600;
   white-space: nowrap;
 }
 
 .plannerNote {
-  margin-top: 20px;
+  margin-top: 22px;
   padding: 14px;
-  background: #eef1f4;
-  border-radius: 10px;
+  border: 1px solid #cad5e1;
+  background: #dde6f0;
+  border-radius: 11px;
   font-size: 0.9rem;
 }
 
-@media (max-width: 700px) {
+@media (max-width: 760px) {
   .simpleHeader {
     align-items: flex-start;
     padding: 12px 14px;
@@ -326,36 +511,80 @@ main {
   }
 
   main {
-    padding: 18px 12px 40px;
+    padding: 14px 12px 40px;
+  }
+
+  .plannerIntro {
+    padding: 15px;
+    border-radius: 15px;
   }
 
   .plannerIntro h2 {
-    font-size: 1.3rem;
+    font-size: 1.35rem;
+  }
+
+  .stayJumpBar {
+    top: 62px;
+    margin: 0 -12px 15px;
+    padding: 9px 12px 10px;
+  }
+
+  .stayJumpBar button {
+    min-height: 34px;
+    padding: 7px 10px;
+    font-size: 0.8rem;
+  }
+
+  .stayCard {
+    scroll-margin-top: 116px;
   }
 
   .stayButton {
-    grid-template-columns: 1fr 34px;
+    grid-template-columns: minmax(0, 1fr) 94px 34px;
     gap: 10px;
-    padding: 15px;
+    padding: 14px;
   }
 
   .dateBlock {
     grid-column: 1;
-    margin-bottom: 3px;
+    grid-row: 1;
+    margin-bottom: 2px;
   }
 
   .stayMain {
     grid-column: 1;
+    grid-row: 2;
+  }
+
+  .stayVisual {
+    grid-column: 2;
+    grid-row: 1 / span 2;
+    min-height: 104px;
+    height: 100%;
   }
 
   .chevron {
-    grid-column: 2;
+    grid-column: 3;
     grid-row: 1 / span 2;
     align-self: center;
+    width: 32px;
+    height: 32px;
+  }
+
+  .stayHeading {
+    gap: 7px;
+  }
+
+  .stayHeading h3 {
+    font-size: 1.02rem;
+  }
+
+  .stayMain p {
+    font-size: 0.91rem;
   }
 
   .stayDetails {
-    padding: 0 15px 15px;
+    padding: 0 14px 14px;
   }
 
   .stayMapLink {
@@ -365,11 +594,13 @@ main {
   }
 
   .routeCard {
-    margin: 2px 4px 10px;
+    margin: 2px 3px 10px;
+    padding: 13px;
   }
 
   .routeTop {
     display: grid;
+    gap: 4px;
   }
 
   .routeNumbers {
@@ -385,7 +616,7 @@ main {
     display: flex;
     width: 100%;
     margin-top: 10px;
-    justify-content: flex-start;
+    justify-content: center;
   }
 
   .activityRow {
@@ -395,5 +626,29 @@ main {
   .activityDistance {
     white-space: normal;
     text-align: right;
+  }
+}
+
+@media (max-width: 430px) {
+  .stayButton {
+    grid-template-columns: minmax(0, 1fr) 82px 32px;
+    padding: 12px;
+  }
+
+  .stayVisual {
+    min-height: 100px;
+    padding: 8px;
+  }
+
+  .stayVisualLabel {
+    font-size: 0.71rem;
+  }
+
+  .stayVisualIcon {
+    font-size: 1.35rem;
+  }
+
+  .status {
+    font-size: 0.7rem;
   }
 }
