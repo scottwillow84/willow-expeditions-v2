@@ -1,0 +1,207 @@
+.stayPage {
+  display: grid;
+  gap: 18px;
+}
+
+.stayPageHeader {
+  padding: 20px;
+  border: 1px solid #c8d4e2;
+  border-radius: 18px;
+  background: #fff;
+  box-shadow: 0 8px 24px rgba(20, 39, 63, 0.08);
+}
+
+.stayPageTitleRow {
+  display: flex;
+  gap: 14px;
+  align-items: center;
+}
+
+.stayPageIcon {
+  display: grid;
+  width: 48px;
+  height: 48px;
+  flex: 0 0 48px;
+  place-items: center;
+  border-radius: 14px;
+  background: #e8eef5;
+  font-size: 1.4rem;
+}
+
+.stayPageKicker,
+.thingsEyebrow {
+  color: #315d91;
+  font-size: 0.78rem;
+  font-weight: 900;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.stayPageHeader h2 {
+  margin-top: 3px;
+  color: #142033;
+}
+
+.stayPageNote {
+  margin-top: 12px;
+  color: #4e5c70;
+  line-height: 1.55;
+}
+
+.stayPageActions,
+.thingActions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 9px;
+  margin-top: 14px;
+}
+
+.stayPageActions a,
+.thingActions a {
+  display: inline-flex;
+  align-items: center;
+  min-height: 40px;
+  padding: 9px 12px;
+  border-radius: 10px;
+  background: #245b98;
+  color: #fff;
+  font-weight: 900;
+  text-decoration: none;
+}
+
+.stayPageActions .newtracsButton,
+.thingActions .newtracsButton {
+  background: #1f4d3b;
+}
+
+.thingsIntro {
+  display: grid;
+  grid-template-columns: 1fr minmax(250px, 0.7fr);
+  gap: 18px;
+  align-items: end;
+}
+
+.thingsIntro h3 {
+  margin-top: 4px;
+  color: #142033;
+  font-size: 1.35rem;
+}
+
+.thingsIntro > p {
+  color: #5b687a;
+  line-height: 1.5;
+}
+
+.thingsGrid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 14px;
+}
+
+.thingCard {
+  display: flex;
+  min-height: 245px;
+  flex-direction: column;
+  padding: 17px;
+  border: 1px solid #cbd6e3;
+  border-radius: 16px;
+  background: #fff;
+  box-shadow: 0 5px 16px rgba(20, 39, 63, 0.06);
+}
+
+.thingCard-4wd {
+  border-color: #b6c9bf;
+  background: #fbfdfb;
+}
+
+.thingTop {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  align-items: center;
+}
+
+.thingIcon {
+  font-size: 1.5rem;
+}
+
+.thingCategory {
+  padding: 4px 8px;
+  border-radius: 999px;
+  background: #eaf0f7;
+  color: #40536a;
+  font-size: 0.74rem;
+  font-weight: 900;
+}
+
+.thingCard-4wd .thingCategory {
+  background: #dfede4;
+  color: #285843;
+}
+
+.thingCard h3 {
+  margin-top: 10px;
+  color: #15263b;
+  font-size: 1.08rem;
+}
+
+.thingStats {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 7px 14px;
+  margin-top: 8px;
+  color: #55667b;
+  font-size: 0.86rem;
+}
+
+.thingCard > p {
+  margin-top: 10px;
+  color: #55667b;
+  line-height: 1.5;
+}
+
+.thingActions {
+  margin-top: auto;
+  padding-top: 14px;
+}
+
+.thingActions a {
+  min-height: 36px;
+  padding: 8px 10px;
+  font-size: 0.84rem;
+}
+
+.stayPageDisclaimer {
+  padding: 13px 14px;
+  border: 1px solid #cbd6e3;
+  border-radius: 11px;
+  background: #e4eaf1;
+  color: #536174;
+  font-size: 0.9rem;
+  line-height: 1.5;
+}
+
+@media (max-width: 700px) {
+  .stayPageHeader {
+    padding: 16px;
+  }
+
+  .thingsIntro,
+  .thingsGrid {
+    grid-template-columns: 1fr;
+  }
+
+  .stayPageActions,
+  .thingActions {
+    display: grid;
+  }
+
+  .stayPageActions a,
+  .thingActions a {
+    justify-content: center;
+  }
+
+  .thingCard {
+    min-height: 0;
+  }
+}
