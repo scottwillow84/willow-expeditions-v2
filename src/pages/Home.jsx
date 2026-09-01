@@ -11,6 +11,10 @@ const stays = [
     dates: "Sat 26 Sep",
     nights: "1 night",
     place: "Spirit of Tasmania",
+    shortPlace: "Spirit",
+    visualLabel: "Geelong → Devonport",
+    visualIcon: "⛴️",
+    theme: "ferry",
     mapQuery: "Spirit of Tasmania Geelong Terminal",
     status: "Booked",
     note: "Scott & Jane drive Sydney → Geelong and go straight onto the boat. No hotel stop.",
@@ -25,6 +29,10 @@ const stays = [
     dates: "Sun 27 – Mon 28 Sep",
     nights: "2 nights",
     place: "Discovery Parks Hadspen",
+    shortPlace: "Hadspen",
+    visualLabel: "Meander Valley",
+    visualIcon: "🌿",
+    theme: "valley",
     mapQuery: "Discovery Parks Hadspen Tasmania",
     status: "Booked",
     note: "Scott & Jane first night. Family together from Monday afternoon.",
@@ -39,6 +47,10 @@ const stays = [
     dates: "Tue 29 – Wed 30 Sep",
     nights: "2 nights",
     place: "Lulworth",
+    shortPlace: "Lulworth",
+    visualLabel: "North-east coast",
+    visualIcon: "🌊",
+    theme: "coast",
     mapQuery: "Lulworth Tasmania Australia",
     status: "Booked",
     note: "Relaxed coast stay for all five of us.",
@@ -54,6 +66,10 @@ const stays = [
     dates: "Thu 1 – Fri 2 Oct",
     nights: "2 nights",
     place: "Tasman Holiday Parks – St Helens",
+    shortPlace: "St Helens",
+    visualLabel: "Bay of Fires",
+    visualIcon: "🧡",
+    theme: "bay",
     mapQuery: "Tasman Holiday Parks St Helens Tasmania",
     status: "Booked",
     note: "Bay Breeze Cabin • Sleeps 6 • $431 total. Check out Sat 3 Oct.",
@@ -69,6 +85,10 @@ const stays = [
     dates: "Sat 3 – Sun 4 Oct",
     nights: "2 nights",
     place: "Home in Bicheno",
+    shortPlace: "Bicheno",
+    visualLabel: "East coast",
+    visualIcon: "🐧",
+    theme: "bicheno",
     mapQuery: "8 Banksia Street Bicheno TAS 7215 Australia",
     status: "Booked",
     note: "Airbnb • 5 guests • $371.68 paid • Check-in Sat 3 Oct 10:00 am • Checkout Mon 5 Oct 2:00 pm • Key safe self check-in.",
@@ -85,6 +105,10 @@ const stays = [
     dates: "Mon 5 – Thu 8 Oct",
     nights: "4 nights",
     place: "Carlton River",
+    shortPlace: "Carlton",
+    visualLabel: "Family base",
+    visualIcon: "🏡",
+    theme: "river",
     mapQuery: "Carlton River Tasmania Australia",
     status: "Locked In",
     note: "Family base. Leave Friday 9 October for Strahan.",
@@ -101,6 +125,10 @@ const stays = [
     dates: "Fri 9 – Sun 11 Oct",
     nights: "3 nights",
     place: "Home in Strahan",
+    shortPlace: "Strahan",
+    visualLabel: "Wild west coast",
+    visualIcon: "🌧️",
+    theme: "west",
     mapQuery: "10 Innes Street West Strahan TAS 7468 Australia",
     status: "Booked",
     note: "Four Bedroom Cottage • 5 guests • $782.10 paid • Check-in Fri 9 Oct 2:00 pm • Checkout Mon 12 Oct 10:00 am.",
@@ -117,6 +145,10 @@ const stays = [
     dates: "Mon 12 – Wed 14 Oct",
     nights: "3 nights",
     place: "Tall Timbers Hotel – Smithton",
+    shortPlace: "Smithton",
+    visualLabel: "Tarkine country",
+    visualIcon: "🌲",
+    theme: "tarkine",
     mapQuery: "Tall Timbers Hotel 15 Scotchtown Road Smithton TAS 7330 Australia",
     status: "Booked",
     note: "TT Lake Apartment • 2 bedrooms • 2 bathrooms • 4 adults + 1 child • $904.50 total • Check out Thu 15 Oct.",
@@ -133,6 +165,10 @@ const stays = [
     dates: "Thu 15 Oct",
     nights: "1 night",
     place: "Spirit of Tasmania",
+    shortPlace: "Ferry",
+    visualLabel: "Devonport → Geelong",
+    visualIcon: "⛴️",
+    theme: "ferry",
     mapQuery: "Spirit of Tasmania Devonport Terminal",
     status: "Booked",
     note: "Check out of Smithton and drive to Devonport for the return sailing.",
@@ -147,6 +183,10 @@ const stays = [
     dates: "Fri 16 Oct",
     nights: "Home",
     place: "Sydney",
+    shortPlace: "Home",
+    visualLabel: "Trip done",
+    visualIcon: "🏠",
+    theme: "home",
     mapQuery: "Sydney NSW Australia",
     status: "Finish",
     note: "Drive home from Geelong.",
@@ -172,7 +212,7 @@ function RouteCard({ route }) {
   return (
     <div className="routeCard">
       <div className="routeTop">
-        <span>🚙 {route.from} → {route.to}</span>
+        <span className="routeTitle">🚙 {route.from} → {route.to}</span>
         <span className="routeNumbers">{route.distance} &nbsp; • &nbsp; {route.drive}</span>
       </div>
       <div className="routeOptions">
@@ -182,8 +222,17 @@ function RouteCard({ route }) {
         <span><strong>4WD:</strong> {route.offroad}</span>
       </div>
       <a className="routeMapLink" href={route.comparePath}>
-        Compare all 4 route options →
+        Compare all 4 routes →
       </a>
+    </div>
+  );
+}
+
+function StayVisual({ stay }) {
+  return (
+    <div className={`stayVisual stayVisual-${stay.theme}`} aria-hidden="true">
+      <span className="stayVisualIcon">{stay.visualIcon}</span>
+      <span className="stayVisualLabel">{stay.visualLabel}</span>
     </div>
   );
 }
@@ -191,12 +240,28 @@ function RouteCard({ route }) {
 export default function Home() {
   const [openStay, setOpenStay] = useState("hadspen");
 
+  const jumpToStay = (id) => {
+    document.getElementById(`stay-${id}`)?.scrollIntoView({ behavior: "smooth", block: "start" });
+  };
+
   return (
     <Layout>
       <section className="plannerIntro">
-        <h2>Where are we sleeping?</h2>
-        <p>Tap a stay for nearby ideas. Between stays, tap Compare all 4 route options for fastest, scenic, touring and 4WD choices.</p>
+        <div>
+          <p className="introEyebrow">22 days • family road trip</p>
+          <h2>Where are we sleeping?</h2>
+          <p>Tap a stay for nearby ideas. Tap any drive card to compare fastest, scenic, touring and 4WD options.</p>
+        </div>
       </section>
+
+      <nav className="stayJumpBar" aria-label="Jump to a stay">
+        {stays.map((stay) => (
+          <button key={stay.id} type="button" onClick={() => jumpToStay(stay.id)}>
+            <span>{stay.visualIcon}</span>
+            {stay.shortPlace}
+          </button>
+        ))}
+      </nav>
 
       <div className="calendarList">
         {stays.map((stay) => {
@@ -207,7 +272,7 @@ export default function Home() {
             <div key={stay.id}>
               {route && <RouteCard route={route} />}
 
-              <section className={`stayCard ${isOpen ? "open" : ""}`}>
+              <section id={`stay-${stay.id}`} className={`stayCard ${isOpen ? "open" : ""}`}>
                 <button
                   className="stayButton"
                   type="button"
@@ -229,6 +294,7 @@ export default function Home() {
                     <p>{stay.note}</p>
                   </div>
 
+                  <StayVisual stay={stay} />
                   <span className="chevron" aria-hidden="true">{isOpen ? "−" : "+"}</span>
                 </button>
 
@@ -243,7 +309,7 @@ export default function Home() {
                       📍 Open {stay.place} in Google Maps ↗
                     </a>
 
-                    <h4>Things to do</h4>
+                    <h4>Things to do nearby</h4>
                     <div className="activityList">
                       {stay.things.map((thing) => (
                         <div className="activityRow" key={thing.name}>
