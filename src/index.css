@@ -89,13 +89,13 @@ main {
   padding: 18px 20px;
   border: 1px solid #ccd6e3;
   border-radius: 18px;
-  background: linear-gradient(135deg, #ffffff 0%, #f0f5fb 100%);
+  background: #fff;
   box-shadow: 0 8px 24px rgba(24, 42, 67, 0.08);
 }
 
 .introEyebrow {
   margin-bottom: 5px;
-  color: #315d91 !important;
+  color: #315d91;
   font-size: 0.78rem;
   font-weight: 900;
   letter-spacing: 0.08em;
@@ -229,26 +229,12 @@ main {
   box-shadow: 0 7px 20px rgba(21, 39, 62, 0.09);
 }
 
-.stayCard.open {
-  border-color: #6e8db1;
-  box-shadow: 0 10px 28px rgba(30, 64, 103, 0.13);
-}
-
 .stayButton {
-  width: 100%;
   display: grid;
-  grid-template-columns: 155px minmax(0, 1fr) 145px 38px;
-  gap: 15px;
+  grid-template-columns: 145px 48px minmax(0, 1fr);
+  gap: 14px;
   align-items: center;
-  padding: 16px;
-  border: 0;
-  background: #fff;
-  text-align: left;
-  cursor: pointer;
-}
-
-.stayButton:hover {
-  background: #fbfcfe;
+  padding: 17px 18px 14px;
 }
 
 .dateBlock {
@@ -266,6 +252,16 @@ main {
   color: #65748a;
   font-size: 0.9rem;
   font-weight: 600;
+}
+
+.stayIcon {
+  display: grid;
+  width: 44px;
+  height: 44px;
+  place-items: center;
+  border-radius: 12px;
+  background: #e8eef5;
+  font-size: 1.35rem;
 }
 
 .stayMain {
@@ -309,181 +305,45 @@ main {
   border: 1px solid #b9dfc4;
 }
 
-.status-planning {
-  background: #fff0c9;
-  color: #6f4d00;
-  border: 1px solid #ead393;
-}
-
 .status-finish {
   background: #dce8fb;
   color: #244d83;
   border: 1px solid #bdd1ef;
 }
 
-.chevron {
-  display: grid;
-  width: 34px;
-  height: 34px;
-  place-items: center;
-  border-radius: 50%;
-  background: #e5ebf2;
-  color: #31445e;
-  font-size: 1.35rem;
-  font-weight: 800;
-  line-height: 1;
-}
-
-.stayVisual {
-  position: relative;
+.stayActions {
   display: flex;
-  min-height: 88px;
-  overflow: hidden;
-  flex-direction: column;
-  align-items: flex-start;
-  justify-content: flex-end;
-  padding: 10px;
-  border-radius: 13px;
-  color: #fff;
-  isolation: isolate;
-  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.16);
+  flex-wrap: wrap;
+  gap: 9px;
+  padding: 0 18px 17px 225px;
 }
 
-.stayVisual::before,
-.stayVisual::after {
-  content: "";
-  position: absolute;
-  z-index: -1;
-  border-radius: 50%;
-  opacity: 0.42;
-}
-
-.stayVisual::before {
-  width: 110px;
-  height: 110px;
-  right: -30px;
-  bottom: -55px;
-  background: rgba(255, 255, 255, 0.35);
-}
-
-.stayVisual::after {
-  width: 90px;
-  height: 90px;
-  top: -48px;
-  left: -20px;
-  background: rgba(255, 255, 255, 0.16);
-}
-
-.stayVisualIcon {
-  margin-bottom: auto;
-  font-size: 1.55rem;
-  filter: drop-shadow(0 2px 3px rgba(0, 0, 0, 0.22));
-}
-
-.stayVisualLabel {
-  font-size: 0.78rem;
+.stayMapLink,
+.thingsLink {
+  display: inline-flex;
+  align-items: center;
+  min-height: 38px;
+  padding: 8px 11px;
+  border-radius: 9px;
+  font-size: 0.86rem;
   font-weight: 900;
-  letter-spacing: 0.02em;
-  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.35);
-}
-
-.stayVisual-ferry {
-  background: linear-gradient(145deg, #11314f 0%, #2779aa 58%, #6cb8d2 100%);
-}
-
-.stayVisual-valley {
-  background: linear-gradient(145deg, #234e3a 0%, #5c8554 58%, #b5c98a 100%);
-}
-
-.stayVisual-coast {
-  background: linear-gradient(145deg, #184e63 0%, #2b8394 52%, #d6c596 100%);
-}
-
-.stayVisual-bay {
-  background: linear-gradient(145deg, #1d6575 0%, #4da5b0 48%, #d87943 100%);
-}
-
-.stayVisual-bicheno {
-  background: linear-gradient(145deg, #24495d 0%, #4d899a 50%, #c98762 100%);
-}
-
-.stayVisual-river {
-  background: linear-gradient(145deg, #264d48 0%, #5d8d78 48%, #96ad86 100%);
-}
-
-.stayVisual-west {
-  background: linear-gradient(145deg, #25323f 0%, #546a76 48%, #7996a1 100%);
-}
-
-.stayVisual-tarkine {
-  background: linear-gradient(145deg, #173f32 0%, #326f54 50%, #769b71 100%);
-}
-
-.stayVisual-home {
-  background: linear-gradient(145deg, #33435b 0%, #566b87 52%, #92a6bd 100%);
-}
-
-.stayDetails {
-  padding: 0 18px 18px 188px;
-  border-top: 1px solid #e2e8ef;
-  background: #fbfcfe;
+  text-decoration: none;
 }
 
 .stayMapLink {
-  display: inline-flex;
-  align-items: center;
-  margin: 16px 0 14px;
-  padding: 10px 13px;
-  border-radius: 10px;
-  background: #dfeaff;
-  color: #173f77;
-  border: 1px solid #c4d6f4;
-  font-weight: 900;
-  text-decoration: none;
+  background: #e4edfb;
+  color: #1d4f88;
+  border: 1px solid #c5d5eb;
+}
+
+.thingsLink {
+  background: #203d61;
+  color: #fff;
 }
 
 .stayMapLink:hover,
-.activityMapLink:hover {
-  text-decoration: underline;
-}
-
-.stayDetails h4 {
-  margin-bottom: 10px;
-  color: #25364d;
-  font-size: 0.98rem;
-}
-
-.activityList {
-  overflow: hidden;
-  border: 1px solid #d7e0ea;
-  border-radius: 11px;
-  background: #fff;
-}
-
-.activityRow {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 16px;
-  padding: 11px 12px;
-  border-bottom: 1px solid #e5ebf1;
-}
-
-.activityRow:last-child {
-  border-bottom: 0;
-}
-
-.activityMapLink {
-  color: #1d568f;
-  font-weight: 800;
-  text-decoration: none;
-}
-
-.activityDistance {
-  color: #67768a;
-  font-size: 0.86rem;
-  font-weight: 600;
-  white-space: nowrap;
+.thingsLink:hover {
+  filter: brightness(0.96);
 }
 
 .plannerNote {
@@ -493,6 +353,13 @@ main {
   background: #dde6f0;
   border-radius: 11px;
   font-size: 0.9rem;
+}
+
+.backLink {
+  width: fit-content;
+  color: #245b98;
+  font-weight: 800;
+  text-decoration: none;
 }
 
 @media (max-width: 760px) {
@@ -540,67 +407,56 @@ main {
   }
 
   .stayButton {
-    grid-template-columns: minmax(0, 1fr) 94px 34px;
-    gap: 10px;
+    grid-template-columns: 42px minmax(0, 1fr);
+    gap: 10px 12px;
     padding: 14px;
   }
 
   .dateBlock {
-    grid-column: 1;
+    grid-column: 1 / -1;
     grid-row: 1;
-    margin-bottom: 2px;
+    padding-bottom: 5px;
+    border-bottom: 1px solid #e5ebf1;
+  }
+
+  .stayIcon {
+    grid-column: 1;
+    grid-row: 2;
+    width: 40px;
+    height: 40px;
+    font-size: 1.2rem;
   }
 
   .stayMain {
-    grid-column: 1;
+    grid-column: 2;
     grid-row: 2;
   }
 
-  .stayVisual {
-    grid-column: 2;
-    grid-row: 1 / span 2;
-    min-height: 104px;
-    height: 100%;
-  }
-
-  .chevron {
-    grid-column: 3;
-    grid-row: 1 / span 2;
-    align-self: center;
-    width: 32px;
-    height: 32px;
-  }
-
-  .stayHeading {
-    gap: 7px;
-  }
-
   .stayHeading h3 {
-    font-size: 1.02rem;
+    font-size: 1.05rem;
   }
 
   .stayMain p {
-    font-size: 0.91rem;
+    font-size: 0.92rem;
   }
 
-  .stayDetails {
+  .stayActions {
+    display: grid;
+    grid-template-columns: 1fr;
     padding: 0 14px 14px;
   }
 
-  .stayMapLink {
-    display: flex;
-    width: 100%;
+  .stayMapLink,
+  .thingsLink {
     justify-content: center;
   }
 
   .routeCard {
-    margin: 2px 3px 10px;
-    padding: 13px;
+    margin: 2px 4px 10px;
   }
 
   .routeTop {
     display: grid;
-    gap: 4px;
   }
 
   .routeNumbers {
@@ -615,40 +471,6 @@ main {
   .routeMapLink {
     display: flex;
     width: 100%;
-    margin-top: 10px;
     justify-content: center;
-  }
-
-  .activityRow {
-    align-items: flex-start;
-  }
-
-  .activityDistance {
-    white-space: normal;
-    text-align: right;
-  }
-}
-
-@media (max-width: 430px) {
-  .stayButton {
-    grid-template-columns: minmax(0, 1fr) 82px 32px;
-    padding: 12px;
-  }
-
-  .stayVisual {
-    min-height: 100px;
-    padding: 8px;
-  }
-
-  .stayVisualLabel {
-    font-size: 0.71rem;
-  }
-
-  .stayVisualIcon {
-    font-size: 1.35rem;
-  }
-
-  .status {
-    font-size: 0.7rem;
   }
 }
