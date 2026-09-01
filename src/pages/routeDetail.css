@@ -4,45 +4,76 @@
 }
 
 .backLink {
+  position: sticky;
+  top: 74px;
+  z-index: 12;
   width: fit-content;
-  color: #245b98;
-  font-weight: 800;
+  padding: 8px 11px;
+  border: 1px solid #bfd0e2;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.94);
+  color: #1f4f86;
+  box-shadow: 0 3px 10px rgba(24, 43, 67, 0.08);
+  font-weight: 900;
   text-decoration: none;
+  backdrop-filter: blur(10px);
 }
 
 .routePageHeader {
   display: grid;
-  gap: 6px;
+  gap: 7px;
+  padding: 18px 20px;
+  border: 1px solid #c7d4e2;
+  border-radius: 17px;
+  background: linear-gradient(135deg, #ffffff 0%, #edf4fb 100%);
+  box-shadow: 0 7px 20px rgba(22, 42, 67, 0.08);
 }
 
 .routeKicker {
-  color: #667085;
-  font-size: 0.9rem;
-  font-weight: 800;
+  color: #315d91;
+  font-size: 0.82rem;
+  font-weight: 900;
   text-transform: uppercase;
-  letter-spacing: 0.05em;
+  letter-spacing: 0.07em;
 }
 
 .routePageHeader h2 {
   margin: 0;
-  color: #172033;
+  color: #132238;
 }
 
 .routePageHeader > p:last-child {
-  color: #5f6877;
+  color: #4f5f73;
   line-height: 1.5;
 }
 
 .routeChoiceList {
   display: grid;
-  gap: 14px;
+  gap: 15px;
 }
 
 .routeChoice {
   padding: 18px;
-  border: 1px solid #dfe3e8;
-  border-radius: 14px;
+  border: 1px solid #c7d3e1;
+  border-radius: 15px;
   background: #fff;
+  box-shadow: 0 7px 18px rgba(22, 42, 67, 0.07);
+}
+
+.routeChoice:nth-child(1) {
+  border-left: 5px solid #345f94;
+}
+
+.routeChoice:nth-child(2) {
+  border-left: 5px solid #4b8a77;
+}
+
+.routeChoice:nth-child(3) {
+  border-left: 5px solid #a57736;
+}
+
+.routeChoice:nth-child(4) {
+  border-left: 5px solid #6b5c8d;
 }
 
 .routeChoiceHead {
@@ -57,14 +88,15 @@
   margin-bottom: 6px;
   padding: 4px 9px;
   border-radius: 999px;
-  background: #eef1f4;
-  color: #4b5563;
-  font-size: 0.78rem;
-  font-weight: 800;
+  background: #e7edf4;
+  color: #344b66;
+  font-size: 0.76rem;
+  font-weight: 900;
 }
 
 .routeChoice h3 {
-  font-size: 1.2rem;
+  color: #16263a;
+  font-size: 1.22rem;
 }
 
 .routeChoiceNumbers {
@@ -74,31 +106,41 @@
 }
 
 .routeChoiceNumbers strong {
-  font-size: 1.12rem;
+  color: #173b66;
+  font-size: 1.16rem;
 }
 
 .routeChoiceNumbers span {
-  color: #667085;
+  color: #5b6b80;
   font-size: 0.92rem;
+  font-weight: 700;
 }
 
 .routeRoadName {
   margin: 14px 0;
-  color: #344054;
-  font-weight: 700;
+  color: #283b53;
+  font-weight: 800;
   line-height: 1.45;
 }
 
 .routeFacts {
   display: grid;
-  gap: 6px;
+  gap: 7px;
   margin-bottom: 14px;
-  color: #5f6877;
+  padding: 12px;
+  border-radius: 10px;
+  background: #f1f5f9;
+  color: #4c5e73;
   line-height: 1.45;
+}
+
+.routeFacts strong {
+  color: #2a405c;
 }
 
 .routeChoice h4 {
   margin-bottom: 8px;
+  color: #25364d;
   font-size: 0.95rem;
 }
 
@@ -109,43 +151,58 @@
 }
 
 .routeStops a {
-  padding: 7px 9px;
-  border-radius: 8px;
-  background: #eef4ff;
-  color: #1f4f8f;
-  font-weight: 700;
+  padding: 8px 10px;
+  border: 1px solid #c5d7ef;
+  border-radius: 9px;
+  background: #e6f0ff;
+  color: #184f89;
+  font-weight: 800;
   text-decoration: none;
 }
 
 .routeNote {
   margin: 14px 0;
   padding: 11px 12px;
-  border-left: 3px solid #9ca6b5;
-  background: #f5f7f9;
-  color: #4b5563;
+  border-left: 4px solid #7d8da1;
+  background: #eef2f6;
+  color: #43546a;
   line-height: 1.45;
 }
 
 .routeDirectionsButton {
   display: inline-flex;
-  padding: 10px 12px;
-  border-radius: 9px;
+  padding: 11px 14px;
+  border-radius: 10px;
   background: #245b98;
   color: #fff;
-  font-weight: 800;
+  box-shadow: 0 4px 10px rgba(36, 91, 152, 0.18);
+  font-weight: 900;
   text-decoration: none;
 }
 
+.routeDirectionsButton:hover {
+  background: #1b4b81;
+}
+
 .routeDisclaimer {
-  padding: 13px;
-  border-radius: 10px;
-  background: #eef1f4;
-  color: #5f6877;
+  padding: 14px;
+  border: 1px solid #c7d3df;
+  border-radius: 11px;
+  background: #dde6ef;
+  color: #4a5c71;
   font-size: 0.9rem;
   line-height: 1.45;
 }
 
 @media (max-width: 700px) {
+  .backLink {
+    top: 66px;
+  }
+
+  .routePageHeader {
+    padding: 15px;
+  }
+
   .routeChoice {
     padding: 15px;
   }
