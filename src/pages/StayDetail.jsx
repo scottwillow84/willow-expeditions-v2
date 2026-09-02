@@ -7,7 +7,37 @@ const mapsUrl = (query) =>
   `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(query)}`;
 
 const groupActivities = (activities) => {
-  const order = ["Must do", "Wildlife", "Nature", "Scenic", "Beach", "Coast", "Short walk", "Easy walk", "Easy / local", "Easy / family", "Food & drink", "Town / food", "Town / history", "History", "City day", "Touring", "Touring day", "Big day", "Family / outdoors", "Wild coast", "Rainforest", "Snow / views", "Trip job", "4WD", "Serious 4WD"];
+  const order = [
+    "Must do",
+    "4WD",
+    "Serious 4WD",
+    "Hidden gem",
+    "Lookout",
+    "Waterfall",
+    "Wildlife",
+    "Nature",
+    "Rainforest",
+    "Scenic",
+    "Beach",
+    "Wild coast",
+    "Coast",
+    "Short walk",
+    "Easy walk",
+    "Easy / local",
+    "Easy / family",
+    "Food & drink",
+    "Town / food",
+    "Town / history",
+    "History",
+    "City day",
+    "Touring",
+    "Touring day",
+    "Big day",
+    "Family / outdoors",
+    "Snow / views",
+    "Trip job",
+  ];
+
   return [...activities].sort((a, b) => {
     const ai = order.indexOf(a.category);
     const bi = order.indexOf(b.category);
@@ -49,9 +79,9 @@ export default function StayDetail() {
         <section className="thingsIntro">
           <div>
             <p className="thingsEyebrow">Things to do nearby</p>
-            <h3>{activities.length} ideas from easy stops to full-day adventures</h3>
+            <h3>{activities.length} ideas from easy stops to proper adventures</h3>
           </div>
-          <p>Distances and times are planning figures from our base. Tap Maps for the live route, photos, reviews and opening details.</p>
+          <p>🛞 4WD • 💎 hidden gems • 👀 lookouts • 💧 waterfalls • plus the family favourites. Distances and times are planning figures from our base.</p>
         </section>
 
         <div className="thingsGrid">
@@ -82,7 +112,7 @@ export default function StayDetail() {
         </div>
 
         <p className="stayPageDisclaimer">
-          4WD difficulty and access can change quickly with rain, closures and track condition. Check Newtracs and the relevant land manager again close to the day before choosing a track.
+          4WD difficulty and access can change quickly with rain, tides, forestry work and closures. Check Newtracs and the relevant land manager again close to the day before choosing a track.
         </p>
       </div>
     </Layout>
