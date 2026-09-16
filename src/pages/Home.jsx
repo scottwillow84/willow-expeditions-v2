@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom";
+import { WeatherTile, useTripWeather } from "../components/WeatherTile";
 import Layout from "../components/Layout";
 import { routePlans } from "../data/routeOptions";
 import { stays } from "../data/stays";
@@ -43,6 +44,8 @@ function RouteCard({ route }) {
 }
 
 export default function Home() {
+  const weather = useTripWeather();
+
   const jumpToStay = (id) => {
     document.getElementById(`stay-${id}`)?.scrollIntoView({ behavior: "smooth", block: "start" });
   };
@@ -103,6 +106,7 @@ export default function Home() {
                     </Link>
                   )}
                 </div>
+                <WeatherTile stayId={stay.id} weather={weather} />
               </section>
             </div>
           );
