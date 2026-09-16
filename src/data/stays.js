@@ -20,7 +20,7 @@ export const stays = [
     type: "ferry",
     mapQuery: "Spirit of Tasmania Geelong Terminal",
     status: "Booked",
-    note: "Scott & Jane drive Sydney → Geelong and go straight onto the boat. No hotel stop.",
+    note: "After an overnight in Albury, Scott & Jane drive to Geelong and board the ferry.",
     activities: [],
   },
   {
