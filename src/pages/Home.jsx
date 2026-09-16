@@ -1,4 +1,6 @@
 import { Link } from "react-router-dom";
+import { CircleMarker, MapContainer, Polyline, Popup, TileLayer, Tooltip } from "react-leaflet";
+import "leaflet/dist/leaflet.css";
 import { WeatherTile, useTripWeather } from "../components/WeatherTile";
 import Layout from "../components/Layout";
 import { routePlans } from "../data/routeOptions";
@@ -10,19 +12,20 @@ const stayIcon = (type) => type === "ferry" ? "⛴" : type === "home" ? "⌂" : 
 const routes = Object.fromEntries(Object.entries(routePlans).map(([id, plan]) => [id, { ...plan.summary, comparePath: `#/route/${id}` }]));
 
 const mapStops = [
-  { id: "hadspen", label: "Hadspen", x: 52, y: 21 },
-  { id: "lulworth", label: "Lulworth", x: 70, y: 17 },
-  { id: "sthelens", label: "St Helens", x: 80, y: 36 },
-  { id: "bicheno", label: "Bicheno", x: 78, y: 49 },
-  { id: "carlton", label: "Carlton", x: 69, y: 73 },
-  { id: "strahan", label: "Strahan", x: 27, y: 64 },
-  { id: "smithton", label: "Smithton", x: 25, y: 19 },
+  { id: "hadspen", label: "Hadspen", position: [-41.503, 147.075] },
+  { id: "lulworth", label: "Lulworth", position: [-40.991, 147.106] },
+  { id: "sthelens", label: "St Helens", position: [-41.322, 148.249] },
+  { id: "bicheno", label: "Bicheno", position: [-41.874, 148.303] },
+  { id: "carlton", label: "Carlton River", position: [-42.868, 147.650] },
+  { id: "strahan", label: "Strahan", position: [-42.153, 145.328] },
+  { id: "smithton", label: "Smithton", position: [-40.841, 145.124] },
 ];
 
 const featuredTracks = [
-  { stay: "Strahan", name: "Climies Track", level: "Serious", icon: "⚠", id: "strahan" },
-  { stay: "Smithton", name: "Sandy Cape Track", level: "Big day", icon: "◉", id: "smithton" },
-  { stay: "Smithton", name: "Balfour Track", level: "Extreme", icon: "⚠", id: "smithton" },
+  { stay: "Strahan", name: "Montezuma Falls 4WD", level: "Waterfall run", icon: "💧", id: "strahan", newtracsUrl: "https://newtracs.com/en-US/trails/tasmania", search: "Search: Montezuma Falls / Ring River" },
+  { stay: "Strahan", name: "Climies Track", level: "Serious", icon: "⚠", id: "strahan", newtracsUrl: "https://newtracs.com/en-US/trails/tasmania/tasmania-climies-track-488226" },
+  { stay: "Smithton", name: "Sandy Cape Track", level: "Big day", icon: "◉", id: "smithton", newtracsUrl: "https://newtracs.com/en-US/trails/tasmania/tasmania-sandy-cape-track-279582" },
+  { stay: "Smithton", name: "Balfour Track", level: "Extreme", icon: "⚠", id: "smithton", newtracsUrl: "https://newtracs.com/en-US/trails/tasmania/tasmania-balfour-track-038240" },
 ];
 
 function RouteCard({ route }) {
@@ -36,25 +39,25 @@ function RouteCard({ route }) {
 }
 
 function TripMap({ onSelect }) {
-  const points = mapStops.map((stop) => `${stop.x},${stop.y}`).join(" ");
+  const routePositions = mapStops.map((stop) => stop.position);
   return (
     <section className="tripMapSection" aria-labelledby="trip-map-title">
       <div className="sectionHeading">
         <div><p className="introEyebrow">The island loop</p><h2 id="trip-map-title">The whole adventure at a glance</h2></div>
-        <a href="https://newtracs.com/en-US/trails/tasmania" target="_blank" rel="noreferrer">Open Tasmania in Newtracs ↗</a>
+        <a className="newtracsCta" href="https://newtracs.com/en-US/trails/tasmania" target="_blank" rel="noreferrer">Open Newtracs ↗</a>
       </div>
       <div className="mapPanel">
-        <svg className="tassieMap" viewBox="0 0 100 100" role="img" aria-label="Stylised map of the Tasmania trip route">
-          <path className="islandShape" d="M22 12 L38 6 57 10 73 16 86 32 91 50 81 69 68 88 48 96 30 85 18 70 11 50 15 31 Z" />
-          <polyline className="routeLineGlow" points={points} /><polyline className="routeLine" points={points} />
+        <MapContainer className="tassieMap" center={[-41.75, 146.75]} zoom={7} minZoom={6} scrollWheelZoom={false}>
+          <TileLayer attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>' url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png" />
+          <Polyline positions={routePositions} pathOptions={{ color: "#d9a15f", weight: 4, opacity: 0.9, dashArray: "8 8" }} />
           {mapStops.map((stop, index) => (
-            <g key={stop.id} className="mapStop" role="button" tabIndex="0" onClick={() => onSelect(stop.id)} onKeyDown={(event) => event.key === "Enter" && onSelect(stop.id)}>
-              <circle cx={stop.x} cy={stop.y} r="3.6" /><text x={stop.x} y={stop.y + 1.5} textAnchor="middle">{index + 1}</text>
-              <text className="mapLabel" x={stop.x + (stop.x > 65 ? -5 : 5)} y={stop.y - 5} textAnchor={stop.x > 65 ? "end" : "start"}>{stop.label}</text>
-            </g>
+            <CircleMarker key={stop.id} center={stop.position} radius={11} pathOptions={{ color: "#101613", weight: 3, fillColor: "#d9a15f", fillOpacity: 1 }} eventHandlers={{ click: () => onSelect(stop.id) }}>
+              <Tooltip permanent direction="top" offset={[0, -10]} className="tripMapLabel">{index + 1}. {stop.label}</Tooltip>
+              <Popup><strong>{index + 1}. {stop.label}</strong><br /><button className="mapPopupButton" type="button" onClick={() => onSelect(stop.id)}>Jump to stay</button></Popup>
+            </CircleMarker>
           ))}
-        </svg>
-        <div className="mapLegend"><span><i className="legendLine" /> 7 Tasmania bases</span><span><i className="legendTrack" /> 3 serious 4WD options</span><span>Tap a numbered stop to jump to it</span></div>
+        </MapContainer>
+        <div className="mapLegend"><span><i className="legendLine" /> 7 Tasmania bases</span><span><i className="legendTrack" /> Trip order, not exact roads</span><span>Tap a stop for its stay</span></div>
       </div>
     </section>
   );
@@ -86,7 +89,7 @@ export default function Home() {
 
       <section className="trackSpotlight">
         <div className="sectionHeading"><div><p className="introEyebrow">Newtracs shortlist</p><h2>The proper 4WD options</h2></div><p>Not promises — the tracks worth watching as weather, tides and closures become clear.</p></div>
-        <div className="trackGrid">{featuredTracks.map((track) => <button key={track.name} type="button" onClick={() => jumpToStay(track.id)}><span className="trackIcon">{track.icon}</span><span><small>{track.stay} · {track.level}</small><strong>{track.name}</strong></span><b>→</b></button>)}</div>
+        <div className="trackGrid">{featuredTracks.map((track) => <article key={track.name} className="trackCard"><button className="trackDetails" type="button" onClick={() => jumpToStay(track.id)}><span className="trackIcon">{track.icon}</span><span><small>{track.stay} · {track.level}</small><strong>{track.name}</strong>{track.search && <em>{track.search}</em>}</span></button><a href={track.newtracsUrl} target="_blank" rel="noreferrer" aria-label={`Open ${track.name} in Newtracs`}>Newtracs ↗</a></article>)}</div>
       </section>
 
       <section className="plannerIntro" id="planner"><p className="introEyebrow">The booked plan</p><h2>Every stay and drive</h2><p>Accommodation, live forecast, route choices and nearby adventures — all in one place for the road.</p></section>
