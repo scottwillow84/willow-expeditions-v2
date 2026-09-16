@@ -8,7 +8,7 @@ export const stays = [
     type: "stay",
     mapQuery: "Atura Albury",
     status: "Booked",
-    note: "Roomy Twin • 2 adults • Take Your Time – Bed & Breakfast • $204 total • Check-in Fri 25 Sep 3:00 pm • Checkout Sat 26 Sep 11:00 am.",
+    note: "Roomy Twin • Bed & Breakfast • Check-in Fri 25 Sep 3:00 pm • Checkout Sat 26 Sep 11:00 am.",
     activities: [],
   },
   {
@@ -84,7 +84,7 @@ export const stays = [
     type: "stay",
     mapQuery: "Tasman Holiday Parks St Helens Tasmania",
     status: "Booked",
-    note: "Bay Breeze Cabin • Sleeps 6 • $431 total. Check out Sat 3 Oct.",
+    note: "Bay Breeze Cabin • Check out Sat 3 Oct.",
     newtracsUrl: "https://newtracs.com/trails/tasmania/tasmania-trafalgar-track-724381",
     activities: [
       { name: "Trafalgar Track", category: "4WD", icon: "🛞", distance: "Near St Helens", drive: "Short local run", mapQuery: "Trafalgar Track St Helens Tasmania", newtracsUrl: "https://newtracs.com/trails/tasmania/tasmania-trafalgar-track-724381", blurb: "A good low-stress family 4WD option close to St Helens. Check the current Newtracs difficulty and recent condition reports before leaving." },
@@ -108,9 +108,9 @@ export const stays = [
     place: "Home in Bicheno",
     shortPlace: "Bicheno",
     type: "stay",
-    mapQuery: "8 Banksia Street Bicheno TAS 7215 Australia",
+    mapQuery: "Bicheno Tasmania Australia",
     status: "Booked",
-    note: "Airbnb • 5 guests • $371.68 paid • Check-in Sat 3 Oct 10:00 am • Checkout Mon 5 Oct 2:00 pm • Key safe self check-in.",
+    note: "Airbnb • Check-in Sat 3 Oct 10:00 am • Checkout Mon 5 Oct 2:00 pm.",
     newtracsUrl: "https://newtracs.com/en-US/trails/tasmania",
     activities: [
       { name: "Douglas-Apsley northern 4WD access / Thompsons Marshes", category: "4WD", icon: "🛞", distance: "~30–40 km", drive: "~45–60 min", mapQuery: "Douglas Apsley National Park Tasmania", blurb: "The more adventurous side of Douglas-Apsley: remote northern country reached by high-clearance 4WD routes. Verify the exact legal access road and current conditions before heading in." },
@@ -162,9 +162,9 @@ export const stays = [
     place: "Home in Strahan",
     shortPlace: "Strahan",
     type: "stay",
-    mapQuery: "10 Innes Street West Strahan TAS 7468 Australia",
+    mapQuery: "Strahan Tasmania Australia",
     status: "Booked",
-    note: "Four Bedroom Cottage • 5 guests • $782.10 paid • Check-in Fri 9 Oct 2:00 pm • Checkout Mon 12 Oct 10:00 am.",
+    note: "Four Bedroom Cottage • Check-in Fri 9 Oct 2:00 pm • Checkout Mon 12 Oct 10:00 am.",
     newtracsUrl: "https://newtracs.com/en-US/trails/tasmania",
     activities: [
       { name: "Gordon River Cruise", category: "Must do", icon: "🛥️", distance: "Waterfront", drive: "Local", mapQuery: "Gordon River Cruises Strahan Tasmania", blurb: "Macquarie Harbour, Hells Gates, Gordon River and Sarah Island in one day." },
@@ -188,9 +188,9 @@ export const stays = [
     place: "Tall Timbers Hotel – Smithton",
     shortPlace: "Smithton",
     type: "stay",
-    mapQuery: "Tall Timbers Hotel 15 Scotchtown Road Smithton TAS 7330 Australia",
+    mapQuery: "Tall Timbers Hotel Smithton Tasmania",
     status: "Booked",
-    note: "TT Lake Apartment • 2 bedrooms • 2 bathrooms • 4 adults + 1 child • $904.50 total • Check out Thu 15 Oct.",
+    note: "TT Lake Apartment • 2 bedrooms • 2 bathrooms • Check out Thu 15 Oct.",
     newtracsUrl: "https://newtracs.com/en-US/trails/tasmania",
     activities: [
       { name: "Stanley & The Nut", category: "Must do", icon: "⛰️", distance: "~22 km", drive: "~20 min", mapQuery: "The Nut Stanley Tasmania", blurb: "Historic Stanley plus the walk or chairlift to the top of The Nut." },
