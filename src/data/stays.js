@@ -1,5 +1,17 @@
 export const stays = [
   {
+    id: "albury",
+    dates: "Fri 25 Sep",
+    nights: "1 night",
+    place: "Atura Albury",
+    shortPlace: "Albury",
+    type: "stay",
+    mapQuery: "Atura Albury",
+    status: "Booked",
+    note: "Roomy Twin • 2 adults • Take Your Time – Bed & Breakfast • $204 total • Check-in Fri 25 Sep 3:00 pm • Checkout Sat 26 Sep 11:00 am.",
+    activities: [],
+  },
+  {
     id: "sep26",
     dates: "Sat 26 Sep",
     nights: "1 night",
